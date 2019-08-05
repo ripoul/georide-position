@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 from dotenv import load_dotenv
+import distutils
 
 load_dotenv()
 
@@ -26,7 +27,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = "fsv9@#=3@gf@ik47bd$2((&)ttl6=l#2k7geg&9mcg%*^9h27c"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = distutils.util.strtobool(os.getenv("DEBUG", "True"))
 
 ALLOWED_HOSTS = []
 

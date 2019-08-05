@@ -4,10 +4,10 @@ from django.test import TestCase, Client
 class MapCase(TestCase):
     def test_map_display(self):
         c = Client()
-        response = c.get("/map/")
+        response = c.get("/")
         self.assertEqual(response.status_code, 200, "unexpected return code")
 
     def test_get_position(self):
         c = Client()
-        response = c.post("/map/positions")
+        response = c.post("/positions")
         self.assertEqual(response.status_code, 200, "unexpected return code")
