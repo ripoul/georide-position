@@ -8,7 +8,7 @@ matrix:
       cache: pip
 
       install:
-        - pip install -r requirements-build.txt
+        - pip install -r requirements-dev.txt
 
       script:
         - coverage run --source='.' manage.py test
@@ -25,7 +25,7 @@ matrix:
       cache: pip
 
       install:
-        - pip install -r requirements-build.txt
+        - pip install -r requirements-dev.txt
 
       script:
         - coverage run --source='.' manage.py test
