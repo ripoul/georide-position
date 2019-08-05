@@ -1,0 +1,37 @@
+matrix:
+  include:
+    - name: "py3.7"
+      dist: xenial
+      language: python
+      python:
+        - "3.7"
+      cache: pip
+
+      install:
+        - pip install -r requirements-build.txt
+
+      script:
+        - coverage run --source='.' manage.py test
+        - black --check --verbose api/*.py urlShortenerAPI/*py *.py
+
+      after_success:
+        - codecov
+
+    - name: "py3.6"
+      dist: xenial
+      language: python
+      python:
+        - "3.6"
+      cache: pip
+
+      install:
+        - pip install -r requirements-build.txt
+
+      script:
+        - coverage run --source='.' manage.py test
+        - black --check --verbose api/*.py urlShortenerAPI/*py *.py
+
+
+branches:
+  only:
+  - master
