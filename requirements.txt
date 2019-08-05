@@ -4,6 +4,7 @@ black==19.3b0
 certifi==2019.6.16
 chardet==3.0.4
 Click==7.0
+codecov==2.0.15
 coverage==4.5.4
 dj-database-url==0.5.0
 Django==2.2.4
