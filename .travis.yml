@@ -12,7 +12,7 @@ matrix:
 
       script:
         - coverage run --source='.' manage.py test
-        - black --check --verbose api/*.py urlShortenerAPI/*py *.py
+        - black map/*.py georidePosition/*py *.py
 
       after_success:
         - codecov
@@ -29,7 +29,7 @@ matrix:
 
       script:
         - coverage run --source='.' manage.py test
-        - black --check --verbose api/*.py urlShortenerAPI/*py *.py
+        - black map/*.py georidePosition/*py *.py
 
 
 branches:
