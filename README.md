@@ -20,13 +20,21 @@ You need to set two environment variables two use the project :
 - georideToken : it's the token for the georide public api (it expires every 30 days)
 - trackerID : it's the id of the tracker you want to follow
 
-Those information can be find on the georide api documentation [here](https://api.georide.fr/).
-
 To set those environment variables you can use a `.env` file in the root of the project. This file is build like that : 
 ```
 georideToken=[your token]
 trackerID=[the tracker id]
 ```
+
+To start the server : 
+
+```sh
+python manage.py runserver
+```
+
+## Help with georide api
+
+All the informations you need can be find on the georide api documentation [here](https://api.georide.fr/).
 
 To get a georide token : 
 ```sh
@@ -42,12 +50,6 @@ curl --request GET \
   --url https://api.georide.fr/user/trackers \
   --header 'Authorization: Bearer [your token]' \
   --header 'cache-control: no-cache'
-```
-
-And finally to start the server : 
-
-```sh
-python manage.py runserver
 ```
 
 ## Run tests
