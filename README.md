@@ -28,7 +28,7 @@ georideToken=[your token]
 trackerID=[the tracker id]
 ```
 
-To have a georide token : 
+To get a georide token : 
 ```sh
 curl --request POST \
   --url https://api.georide.fr/user/login \
