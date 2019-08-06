@@ -2,7 +2,7 @@ from django.shortcuts import render
 import requests
 import json
 import os
-from datetime import date
+from datetime import date, timedelta
 
 # Create your views here.
 from django.http import HttpResponse
@@ -15,7 +15,7 @@ def index(request):
 def getPositions(request):
     url = "https://api.georide.fr/tracker/%s/trips/positions" % (os.getenv("trackerID"))
     today = date.today().strftime("%Y%m%d")
-    tomorrow = (datetime.date.today() + datetime.timedelta(days=1)).strftime("%Y%m%d")
+    tomorrow = (date.today() + timedelta(days=1)).strftime("%Y%m%d")
     fromDate = "%sT020000"%(today)
     toDate = "%sT015959"%(tomorrow)
     payload = {"from": fromDate, "to": toDate}
