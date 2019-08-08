@@ -38,4 +38,7 @@ fetch('/positions')
 
         map.setView([last.latitude, last.longitude], 11);
 
+        lastDate = new Date(last.fixtime)
+        toPrint = `Dernier mouvement reçu le ${lastDate.getDate()}/${lastDate.getMonth() + 1}/${lastDate.getFullYear()} à ${lastDate.getHours()}h${lastDate.getMinutes()}`;
+        document.getElementById("lastDate").innerHTML = toPrint;
     })
