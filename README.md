@@ -8,7 +8,9 @@
 
 ### 🏠 [Homepage](https://github.com/ripoul/georide-position)
 
-In this project I use [georide](https://georide.fr/). Georide is a gps tracker for motorcycle. Feel free to check their work.
+In this project I use [georide](https://georide.fr/). Georide is a gps tracker for motorcycle. Feel free to check their work. 
+
+This project is ready to be deploy with [heroku](https://heroku.com) as long as you follow the "Usage" chapter instruction.
 
 ## Install
 
