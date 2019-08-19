@@ -4,9 +4,11 @@
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/python/black)
 [![codecov](https://codecov.io/gh/ripoul/georide-position/branch/master/graph/badge.svg)](https://codecov.io/gh/ripoul/georide-position)
 
-> get the last day deplacement of the georide tracker
+> get the last day deplacement of the georide tracker for public sharing (road trip for example)
 
 ### 🏠 [Homepage](https://github.com/ripoul/georide-position)
+
+In this project I use [georide](https://georide.fr/). Georide is a gps tracker for motorcycle. Feel free to check their work.
 
 ## Install
 
