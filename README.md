@@ -12,13 +12,13 @@ In this project I use [georide](https://georide.fr/). Georide is a gps tracker f
 
 This project is ready to be deploy with [heroku](https://heroku.com) as long as you follow the "Usage" chapter instruction.
 
-## Install
+## :hammer: Install
 
 ```sh
 pip install -r requirements.txt
 ```
 
-## Usage
+## :wrench: Usage
 
 You need to set two environment variables two use the project : 
 - georideToken : it's the token for the georide public api (it expires every 30 days)
@@ -36,7 +36,7 @@ To start the server :
 python manage.py runserver
 ```
 
-## Help with georide api
+## :interrobang: Help with georide api
 
 All the informations you need can be find on the georide api documentation [here](https://api.georide.fr/).
 
@@ -56,7 +56,7 @@ curl --request GET \
   --header 'cache-control: no-cache'
 ```
 
-## Run tests
+## :white_check_mark: Run tests
 
 ```sh
 python manage.py test
