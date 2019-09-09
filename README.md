@@ -22,8 +22,9 @@ You need to set two environment variables two use the project :
 
 To set those environment variables you can use a `.env` file in the root of the project. This file is build like that : 
 ```
-georideToken=[your token]
-trackerID=[the tracker id]
+trackerID=[your tracker id]
+userGeoride=[the email of your account]
+passwordGeoride=[the password of your account]
 ```
 
 To start the server : 
