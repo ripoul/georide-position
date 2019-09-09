@@ -6,7 +6,7 @@ chardet==3.0.4
 codecov==2.0.15
 coverage==4.5.4
 Click==7.0
-Django==2.2.4
+Django==2.2.5
 idna==2.8
 python-dotenv==0.10.3
 pytz==2019.2
