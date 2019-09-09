@@ -7,6 +7,7 @@ from datetime import date, timedelta
 # Create your views here.
 from django.http import HttpResponse
 
+
 class georide_cli:
     trackerID = os.getenv("trackerID")
     georideToken = None
@@ -27,8 +28,7 @@ class georide_cli:
             requestHeaders = {"Authorization": "Bearer %s" % (self.georideToken)}
             r = requests.get(url, params=payload, headers=requestHeaders)
         return r.text
-        
-    
+
     def getNewToken(self):
         url = "https://api.georide.fr/user/login"
         payload = {"email": self.user, "password": self.password}
