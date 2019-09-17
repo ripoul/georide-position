@@ -20,9 +20,10 @@ pip install -r requirements.txt
 
 ## :wrench: Usage
 
-You need to set two environment variables two use the project : 
-- georideToken : it's the token for the georide public api (it expires every 30 days)
+You need to set three environment variables two use the project : 
 - trackerID : it's the id of the tracker you want to follow
+- userGeoride : it's the user use to connect to your georide account
+- passwordGeoride : it's the password use to connect to your georide account
 
 To set those environment variables you can use a `.env` file in the root of the project. This file is build like that : 
 ```
