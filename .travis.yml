@@ -1,37 +1,27 @@
-matrix:
-  include:
-    - name: "py3.7"
-      dist: xenial
-      language: python
-      python:
-        - "3.7"
-      cache: pip
+dist: xenial
+language: python
+python:
+  - "3.6"
+  - "3.7"
+cache: pip
 
-      install:
-        - pip install -r requirements-dev.txt
+install:
+  - pip install -r requirements-build.txt
 
-      script:
-        - coverage run --source='.' manage.py test
-        - black map/*.py georidePosition/*py *.py
+script:
+  - coverage run --source='.' manage.py test
+  - black --check --verbose api/*.py urlShortenerAPI/*py *.py
+after_success:
+  - codecov
 
-      after_success:
-        - codecov
+deploy:
+  provider: gae
+  keyfile: georide-e54ed1265ead.json
+  project: georide
+  on:
+    branch: master
+    python: "3.7"
 
-    - name: "py3.6"
-      dist: xenial
-      language: python
-      python:
-        - "3.6"
-      cache: pip
-
-      install:
-        - pip install -r requirements-dev.txt
-
-      script:
-        - coverage run --source='.' manage.py test
-        - black map/*.py georidePosition/*py *.py
-
-
-branches:
-  only:
-  - master
+before_install:
+- openssl aes-256-cbc -K $encrypted_f4b85d9d63ff_key -iv $encrypted_f4b85d9d63ff_iv
+  -in georide-e54ed1265ead.json.enc -out georide-e54ed1265ead.json -d
