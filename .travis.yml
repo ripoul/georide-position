@@ -10,7 +10,7 @@ install:
 
 script:
   - coverage run --source='.' manage.py test
-  - black --check --verbose api/*.py urlShortenerAPI/*py *.py
+  - black --check --verbose georidePosition/*.py map/*py *.py
 after_success:
   - codecov
 
