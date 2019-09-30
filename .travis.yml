@@ -13,6 +13,7 @@ script:
   - black --check --verbose georidePosition/*.py map/*py *.py
 after_success:
   - codecov
+  - python manage.py collectstatic
 
 deploy:
   provider: gae
