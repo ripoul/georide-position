@@ -7,11 +7,9 @@
 
 > get the last day deplacement of the georide tracker for public sharing (road trip for example)
 
-### 🏠 [Homepage](https://github.com/ripoul/georide-position)
+### 🏠 [Homepage](https://georide.ripoul.fr)
 
 In this project I use [georide](https://georide.fr/). Georide is a gps tracker for motorcycle. Feel free to check their work. 
-
-This project is ready to be deploy with [heroku](https://heroku.com) as long as you follow the "Usage" chapter instruction.
 
 ## :hammer: Install
 
