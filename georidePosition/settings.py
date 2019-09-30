@@ -29,7 +29,7 @@ SECRET_KEY = "fsv9@#=3@gf@ik47bd$2((&)ttl6=l#2k7geg&9mcg%*^9h27c"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = distutils.util.strtobool(os.getenv("DEBUG", "True"))
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "maintenance_mode",
 ]
 
 MIDDLEWARE = [
@@ -52,6 +53,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "maintenance_mode.middleware.MaintenanceModeMiddleware",
 ]
 
 ROOT_URLCONF = "georidePosition.urls"
@@ -67,6 +69,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "maintenance_mode.context_processors.maintenance_mode",
             ]
         },
     }
@@ -118,9 +121,5 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 
-try:
-    import django_heroku
-
-    django_heroku.settings(locals())
-except ImportError:
-    pass
+if os.getenv("GAE_ENV", "").startswith("standard"):
+    MAINTENANCE_MODE = True

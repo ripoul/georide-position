@@ -1,18 +1,18 @@
 from django.shortcuts import render
 import requests
 import json
-import os
 from datetime import date, timedelta
 
 # Create your views here.
 from django.http import HttpResponse
+from .utils import get_vars
 
 
 class georide_cli:
-    trackerID = os.getenv("trackerID")
+    trackerID = get_vars("trackerID")
     georideToken = None
-    user = os.getenv("userGeoride")
-    password = os.getenv("passwordGeoride")
+    user = get_vars("userGeoride")
+    password = get_vars("passwordGeoride")
 
     def getPositions(self):
         url = "https://api.georide.fr/tracker/%s/trips/positions" % (self.trackerID)
