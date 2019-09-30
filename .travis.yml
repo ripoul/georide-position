@@ -20,6 +20,7 @@ deploy:
   provider: gae
   keyfile: georide-e54ed1265ead.json
   project: georide
+  skip_cleanup: true
   on:
     branch: master
     python: "3.7"
