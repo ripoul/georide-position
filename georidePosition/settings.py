@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 from dotenv import load_dotenv
-import distutils.util
 
 load_dotenv()
 
@@ -27,7 +26,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = "fsv9@#=3@gf@ik47bd$2((&)ttl6=l#2k7geg&9mcg%*^9h27c"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = distutils.util.strtobool(os.getenv("DEBUG", "True"))
+DEBUG = True
+if os.getenv("GAE_ENV", "").startswith("standard"):
+    DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
@@ -119,8 +120,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-STATIC_URL = '/static/'
-STATIC_ROOT = 'static'
+STATIC_URL = "/static/"
+STATIC_ROOT = "static"
 
 if os.getenv("GAE_ENV", "").startswith("standard"):
     MAINTENANCE_MODE = True
