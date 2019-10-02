@@ -124,4 +124,4 @@ STATIC_URL = "/static/"
 STATIC_ROOT = "static"
 
 if os.getenv("GAE_ENV", "").startswith("standard"):
-    MAINTENANCE_MODE = True
+    MAINTENANCE_MODE = False
