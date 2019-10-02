@@ -24,6 +24,11 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 
+    <!--##### Date range picker #####-->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
     <!--##### LEAFLET #####-->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
         integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
@@ -36,10 +41,17 @@
 </head>
 
 <body>
-    <div class="container">
-        <div id="lastDate" class="text-right"></div>
-        <div id="mapid"></div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3" id="rangepickercontainer">
+                <input type="text" id="rangepicker" class="form-control">
+            </div>
+            <div class="col-md-9">
+                <div id="lastDate" class="text-right"></div>
+                <div id="mapid"></div>
+            </div>
 
+        </div>
     </div>
     <footer class="page-footer font-small blue">
 
@@ -50,6 +62,10 @@
         <!-- Copyright -->
 
     </footer>
+    <script>
+        startDate = "{{ startDate }}";
+        endDate = "{{ endDate }}";
+    </script>
     <script type="text/javascript" src="{% static 'map/script.js' %}"></script>
 </body>
 

@@ -1,7 +1,7 @@
 from django.shortcuts import render
 import requests
 import json
-from datetime import date, timedelta
+from datetime import date, timedelta, datetime
 
 # Create your views here.
 from django.http import HttpResponse
@@ -14,13 +14,16 @@ class georide_cli:
     user = get_vars("userGeoride")
     password = get_vars("passwordGeoride")
 
-    def getPositions(self):
+    def getPositions(
+        self, startDate=get_vars("startDate"), endDate=get_vars("endDate")
+    ):
         url = "https://api.georide.fr/tracker/%s/trips/positions" % (self.trackerID)
-        today = date.today().strftime("%Y%m%d")
-        tomorrow = (date.today() + timedelta(days=1)).strftime("%Y%m%d")
-        fromDate = "%sT020000" % (today)
-        toDate = "%sT015959" % (tomorrow)
-        payload = {"from": fromDate, "to": toDate}
+        endDate = (
+            (datetime.strptime(endDate, "%Y/%m/%d") + timedelta(days=1)).strftime(
+                "%Y%m%d"
+            )
+        ) + "T015959"
+        payload = {"from": startDate.replace("/", "") + "T020000", "to": endDate}
         requestHeaders = {"Authorization": "Bearer %s" % (self.georideToken)}
         r = requests.get(url, params=payload, headers=requestHeaders)
         if r.status_code == 401:
@@ -36,11 +39,27 @@ class georide_cli:
         self.georideToken = r.json()["authToken"]
 
 
+geo = georide_cli()
+
+
 def index(request):
-    return render(request, "map/index.html", {})
+    startDate = datetime.strptime(get_vars("startDate"), "%Y/%m/%d")
+    endDate = datetime.strptime(get_vars("endDate"), "%Y/%m/%d")
+    param = {
+        "startDate": startDate.strftime("%d/%m/%Y"),
+        "endDate": endDate.strftime("%d/%m/%Y"),
+    }
+    return render(request, "map/index.html", param)
 
 
 def getPositions(request):
-    georide = georide_cli()
-    ret = georide.getPositions()
-    return HttpResponse(ret, content_type="application/json")
+    startDate = request.GET.get("startDate", get_vars("startDate"))
+    endDate = request.GET.get("endDate", get_vars("endDate"))
+    sd = datetime.strptime(startDate, "%Y/%m/%d")
+    ldd = datetime.strptime(get_vars("startDate"), "%Y/%m/%d")
+    ed = datetime.strptime(endDate, "%Y/%m/%d")
+    led = datetime.strptime(get_vars("endDate"), "%Y/%m/%d")
+    if sd >= ldd and ed <= led:
+        ret = geo.getPositions(startDate=startDate, endDate=endDate)
+        return HttpResponse(ret, content_type="application/json")
+    return HttpResponse([], content_type="application/json")
