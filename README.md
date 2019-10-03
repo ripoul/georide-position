@@ -66,7 +66,8 @@ curl --request GET \
 To get the position history : 
 ```sh
 curl --request GET \
-  --url 'https://api.georide.fr/tracker/[tracker id]/trips/positions?from=[start date]&to=[end date]'
+  --url 'https://api.georide.fr/tracker/[tracker id]/trips/positions?from=[start date]&to=[end date]' \
+  --header 'Authorization: Bearer [your token]'
 ```
 The date has to be formated like that : `YYYYMMDDTHHmmSS`.
 
