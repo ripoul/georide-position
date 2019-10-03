@@ -17,7 +17,7 @@ $('#rangepicker').daterangepicker({
     generateRoute(url);
 });
 
-var osmLayer = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', { // LIGNE 16
+var osmLayer = L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', { // LIGNE 16
     attribution: '© OpenStreetMap contributors',
     maxZoom: 19
 });
