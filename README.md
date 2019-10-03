@@ -19,17 +19,23 @@ pip install -r requirements.txt
 
 ## :wrench: Usage
 
-You need to set three environment variables two use the project : 
+You need to set 5 environment variables to use the project : 
 - trackerID : it's the id of the tracker you want to follow
 - userGeoride : it's the user use to connect to your georide account
 - passwordGeoride : it's the password use to connect to your georide account
+- startDate : the start date of your road trip
+- endDate : the end date of your road trip
 
 To set those environment variables you can use a `.env` file in the root of the project. This file is build like that : 
 ```
 trackerID=[your tracker id]
 userGeoride=[the email of your account]
 passwordGeoride=[the password of your account]
+startDate=[the start date of your road trip]
+endDate=[the end date of your road trip]
 ```
+
+The date in the env variable has to be formated like that : `YYYY/MM/DD`
 
 To start the server : 
 
@@ -56,6 +62,14 @@ curl --request GET \
   --header 'Authorization: Bearer [your token]' \
   --header 'cache-control: no-cache'
 ```
+
+To get the position history : 
+```sh
+curl --request GET \
+  --url 'https://api.georide.fr/tracker/[tracker id]/trips/positions?from=[start date]&to=[end date]' \
+  --header 'Authorization: Bearer [your token]'
+```
+The date has to be formated like that : `YYYYMMDDTHHmmSS`.
 
 ## :white_check_mark: Run tests
 
