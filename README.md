@@ -23,6 +23,8 @@ You need to set 5 environment variables to use the project :
 - trackerID : it's the id of the tracker you want to follow
 - userGeoride : it's the user use to connect to your georide account
 - passwordGeoride : it's the password use to connect to your georide account
+- startDate : the start date of your road trip
+- endDate : the end date of your road trip
 
 To set those environment variables you can use a `.env` file in the root of the project. This file is build like that : 
 ```
