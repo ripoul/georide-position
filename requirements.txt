@@ -23,7 +23,7 @@ protobuf==3.10.0
 pyasn1==0.4.7
 pyasn1-modules==0.2.6
 python-dotenv==0.10.3
-pytz==2019.2
+pytz==2019.3
 requests==2.22.0
 rsa==4.0
 six==1.12.0
