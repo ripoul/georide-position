@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
-import os
+import os, sys
 from dotenv import load_dotenv
 from map.utils import get_vars
 
@@ -93,17 +93,17 @@ DATABASES = {
 if os.getenv("GAE_ENV", "").startswith("standard") or os.getenv(
     "travis", ""
 ).lower().startswith("true"):
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.postgresql",
-            "NAME": get_vars("db_name"),
-            "USER": get_vars("db_user"),
-            "PASSWORD": get_vars("db_pass"),
-            "HOST": get_vars("db_host"),
-            "PORT": get_vars("db_port"),
+    if "test" not in sys.argv:
+        DATABASES = {
+            "default": {
+                "ENGINE": "django.db.backends.postgresql",
+                "NAME": get_vars("db_name"),
+                "USER": get_vars("db_user"),
+                "PASSWORD": get_vars("db_pass"),
+                "HOST": get_vars("db_host"),
+                "PORT": get_vars("db_port"),
+            }
         }
-    }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
