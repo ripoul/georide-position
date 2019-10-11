@@ -8,3 +8,4 @@ class Profile(models.Model):
     startDate = models.DateTimeField()
     endDate = models.DateTimeField()
     token = EncryptedTextField()
+    trackerID = models.IntegerField()
