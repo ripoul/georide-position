@@ -42,14 +42,14 @@ class georide_cli:
 geo = georide_cli()
 
 
-def index(request):
+def road_trip(request):
     startDate = datetime.strptime(get_vars("startDate"), "%Y/%m/%d")
     endDate = datetime.strptime(get_vars("endDate"), "%Y/%m/%d")
     param = {
         "startDate": startDate.strftime("%d/%m/%Y"),
         "endDate": endDate.strftime("%d/%m/%Y"),
     }
-    return render(request, "map/index.html", param)
+    return render(request, "map/road-trip.html", param)
 
 
 def getPositions(request):
