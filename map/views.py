@@ -30,6 +30,16 @@ class georide_cli:
         payload = {"email": user, "password": password}
         r = requests.post(url, data=payload)
         return r.json()["authToken"]
+    
+    def getTrackersID(self, token):
+        requestHeaders = {"Authorization": "Bearer %s" % (token)}
+        r = requests.get("https://api.georide.fr/user/trackers", headers=requestHeaders).json()
+        print(type(r))
+        ret = []
+        for tracker in r:
+            ret.append([tracker["trackerId"], tracker["trackerName"]])
+        return ret
+
 
 
 geo = georide_cli()
@@ -70,7 +80,15 @@ def getToken(request):
         if not email or not password:
             return HttpResponse(status=400)
         token = geo.getNewToken(email, password)
-        print(token)
         ret = {"token": token}
+        return HttpResponse(json.dumps(ret), content_type="application/json")
+    return HttpResponse(status=405)
+
+def getTrackers(request):
+    if request.method == "POST":
+        token = request.POST.get("token")
+        if not token:
+            return HttpResponse(status=400)
+        ret = geo.getTrackersID(token)
         return HttpResponse(json.dumps(ret), content_type="application/json")
     return HttpResponse(status=405)
