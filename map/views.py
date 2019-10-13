@@ -5,6 +5,7 @@ from datetime import date, timedelta, datetime
 from .models import Profile
 from django.contrib.auth.models import User
 from django.db import IntegrityError
+
 # Create your views here.
 from django.http import HttpResponse
 from .utils import get_vars
@@ -14,12 +15,8 @@ from django.contrib.auth import authenticate, login
 class georide_cli:
     def getPositions(self, token, trackerID, startDate, endDate):
         url = "https://api.georide.fr/tracker/%s/trips/positions" % (trackerID)
-        endDate = (
-            (datetime.strptime(endDate, "%Y/%m/%d") + timedelta(days=1)).strftime(
-                "%Y%m%d"
-            )
-        ) + "T015959"
-        payload = {"from": startDate.replace("/", "") + "T020000", "to": endDate}
+        endDate = ((endDate + timedelta(days=1)).strftime("%Y%m%d")) + "T015959"
+        payload = {"from": startDate.strftime("%Y%m%d") + "T020000", "to": endDate}
         requestHeaders = {"Authorization": "Bearer %s" % (token)}
         r = requests.get(url, params=payload, headers=requestHeaders)
         if r.status_code == 401:
@@ -47,29 +44,35 @@ class georide_cli:
 
 geo = georide_cli()
 
-"""
-def road_trip(request):
-    startDate = datetime.strptime(get_vars("startDate"), "%Y/%m/%d")
-    endDate = datetime.strptime(get_vars("endDate"), "%Y/%m/%d")
+
+def road_trip(request, username):
+    user = User.objects.get(username=username)
+    profile = Profile.objects.get(user=user)
     param = {
-        "startDate": startDate.strftime("%d/%m/%Y"),
-        "endDate": endDate.strftime("%d/%m/%Y"),
+        "username": username,
+        "startDate": profile.startDate.strftime("%d/%m/%Y"),
+        "endDate": profile.endDate.strftime("%d/%m/%Y"),
     }
     return render(request, "map/road-trip.html", param)
-"""
 
-"""
-def getPositions(request):
-    startDate = request.GET.get("startDate", get_vars("startDate"))
-    endDate = request.GET.get("endDate", get_vars("endDate"))
-    sd = datetime.strptime(startDate, "%Y/%m/%d")
-    ldd = datetime.strptime(get_vars("startDate"), "%Y/%m/%d")
-    ed = datetime.strptime(endDate, "%Y/%m/%d")
-    led = datetime.strptime(get_vars("endDate"), "%Y/%m/%d")
-    if sd >= ldd and ed <= led:
-        return geo.getPositions(startDate=startDate, endDate=endDate)
+
+def getPositions(request, username):
+    startDateReq = request.GET.get("startDate", None)
+    endDateReq = request.GET.get("endDate", None)
+
+    user = User.objects.get(username=username)
+    profile = Profile.objects.get(user=user)
+
+    if startDateReq is None or endDateReq is None:
+        return geo.getPositions(
+            profile.token, profile.trackerID, profile.startDate, profile.endDate
+        )
+
+    sd = datetime.strptime(startDateReq, "%Y/%m/%d")
+    ed = datetime.strptime(endDateReq, "%Y/%m/%d")
+    if sd.date() >= profile.startDate and ed.date() <= profile.endDate:
+        return geo.getPositions(profile.token, profile.trackerID, sd.date(), ed.date())
     return HttpResponse([], content_type="application/json")
-"""
 
 
 def getInfo(request):
@@ -97,8 +100,10 @@ def getTrackers(request):
         return HttpResponse(json.dumps(ret), content_type="application/json")
     return HttpResponse(status=405)
 
+
 def createAccountForm(request):
     return render(request, "map/create-account.html", {})
+
 
 def createAccount(request):
     if request.method == "POST":
@@ -109,12 +114,22 @@ def createAccount(request):
         password = request.POST.get("password")
         startDate = request.POST.get("startDate")
         endDate = request.POST.get("endDate")
-        if not username or not email or not token or not trackerID or not password or not startDate or not endDate:
+        if (
+            not username
+            or not email
+            or not token
+            or not trackerID
+            or not password
+            or not startDate
+            or not endDate
+        ):
             return HttpResponse(status=400)
         trackerID = int(trackerID)
-        #check date
+        # check date
         try:
-            profile = Profile.objects.create_profile(username, email, password, token, trackerID, startDate, endDate)
+            profile = Profile.objects.create_profile(
+                username, email, password, token, trackerID, startDate, endDate
+            )
             profile.save()
             user = authenticate(request, username=username, password=password)
             if user is not None:
@@ -124,8 +139,10 @@ def createAccount(request):
             return HttpResponse(status=500)
     return HttpResponse(status=405)
 
+
 def connectAccountForm(request):
     return render(request, "map/connect-account.html", {})
+
 
 def connectAccount(request):
     if request.method == "POST":

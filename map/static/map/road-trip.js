@@ -13,7 +13,7 @@ $('#rangepicker').daterangepicker({
 }, function (start, end, label) {
     map.removeLayer(firstpolyline) ;
     map.removeLayer(lastPoint);
-    var url = "/positions?startDate="+start.format('YYYY/MM/DD')+"&endDate="+end.format('YYYY/MM/DD');
+    var url = "/positions/"+username+"?startDate="+start.format('YYYY/MM/DD')+"&endDate="+end.format('YYYY/MM/DD');
     generateRoute(url);
 });
 
@@ -62,4 +62,4 @@ function generateRoute(url) {
     })
 }
 
-generateRoute("/positions")
+generateRoute("/positions/"+username)
