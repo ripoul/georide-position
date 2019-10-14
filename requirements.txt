@@ -13,7 +13,7 @@ cryptography==2.7
 Django==2.2.6
 django-fernet-fields==0.6
 django-maintenance-mode==0.13.3
-google-api-core==1.14.2
+google-api-core==1.14.3
 google-auth==1.6.3
 google-cloud-core==1.0.3
 google-cloud-firestore==1.4.0
@@ -26,7 +26,7 @@ idna==2.8
 protobuf==3.10.0
 psycopg2==2.8.3
 pyasn1==0.4.7
-pyasn1-modules==0.2.6
+pyasn1-modules==0.2.7
 pycparser==2.19
 python-dotenv==0.10.3
 pytz==2019.3
