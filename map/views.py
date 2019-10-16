@@ -103,6 +103,8 @@ def getTrackers(request):
 
 
 def createAccountForm(request):
+    if request.user.is_authenticated:
+        return redirect(reverse(road_trip, args=[request.user.username]))
     return render(request, "map/create-account.html", {})
 
 
@@ -142,6 +144,8 @@ def createAccount(request):
 
 
 def connectAccountForm(request):
+    if request.user.is_authenticated:
+        return redirect(reverse(road_trip, args=[request.user.username]))
     return render(request, "map/connect-account.html", {})
 
 
