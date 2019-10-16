@@ -4,7 +4,7 @@ $('#form').submit(function () {
         type: 'POST',
         data: $('#form').serialize(),
         success: function (data) {
-            //redirect to road trip
+            window.location.href = "/trip/"+$('#id').val();
             return;
         },
         error: function (e) {

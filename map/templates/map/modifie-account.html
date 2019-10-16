@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Create Account</title>
+    <title>Modifie Account</title>
     <link rel="icon" href="{% static 'map/favicon.png' %}" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -26,66 +26,52 @@
 <body>
     <div class="container">
         <article class="card-body mx-auto" style="max-width: 400px;">
-            <h4 class="card-title mt-3 text-center">Create Account</h4>
-            <p class="text-center">Get started with your free account</p>
+            <h4 class="card-title mt-3 text-center">Modifie your Account</h4>
             <p class="text-center">If you need help to get your georide token or the ID of your tracker, go to <a href="/getInfo" target="_blank">the help page.</a></p>
-            <form id="form" method="POST" action="/createAccount" oninput="onInput();">
+            <form id="form" method="POST" action="/modifieAccount" oninput="onInput();">
                 {% csrf_token %}
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-user"></i> </span>
                     </div>
-                    <input id="id" name="id" class="form-control" placeholder="ID" type="text" required>
+                    <input value="{{ id }}" id="id" name="id" class="form-control" placeholder="ID" type="text" required>
                 </div> <!-- form-group// -->
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
                     </div>
-                    <input name="email" class="form-control" placeholder="Email address" type="email" required>
+                    <input value="{{ email }}" name="email" class="form-control" placeholder="Email address" type="email" required>
                 </div> <!-- form-group// -->
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fas fa-key"></i> </span>
                     </div>
-                    <input name="token" class="form-control" placeholder="Your georide token" type="password" required>
+                    <input value="{{ token }}" name="token" class="form-control" placeholder="Your georide token" type="password" required>
                 </div> <!-- form-group// -->
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fas fa-thumbtack"></i> </span>
                     </div>
-                    <input name="trackerID" class="form-control" placeholder="Georide tracker ID" type="number"
+                    <input value="{{ trackerID }}" name="trackerID" class="form-control" placeholder="Georide tracker ID" type="number"
                         required>
-                </div> <!-- form-group// -->
-                <div class="form-group input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
-                    </div>
-                    <input id="password" name="password" class="form-control" placeholder="Create password" type="password" required>
-                </div> <!-- form-group// -->
-                <div class="form-group input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
-                    </div>
-                    <input id="password2" name="password2" class="form-control" placeholder="Repeat password" type="password" required>
                 </div> <!-- form-group// -->
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fas fa-calendar-day"></i> </span>
                     </div>
-                    <input id="startDate" name="startDate" class="form-control" placeholder="The first day of your road trip"
+                    <input value="{{ startDate }}" id="startDate" name="startDate" class="form-control" placeholder="The first day of your road trip"
                         type="date" required>
                 </div> <!-- form-group// -->
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fas fa-calendar-day"></i> </span>
                     </div>
-                    <input id="endDate" name="endDate" class="form-control" placeholder="The last day of your road trip" type="date"
+                    <input value="{{ endDate }}" id="endDate" name="endDate" class="form-control" placeholder="The last day of your road trip" type="date"
                         required>
                 </div> <!-- form-group// -->
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-block"> Create Account </button>
+                    <button type="submit" class="btn btn-primary btn-block"> Update Account </button>
                 </div> <!-- form-group// -->
-                <p class="text-center">Have an account? <a href="/connect">Log In</a> </p>
             </form>
         </article>
         <!-- Modal -->
@@ -94,7 +80,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-body">
-                        ID already use !
+                        An error occured...
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -103,7 +89,7 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="{% static 'map/create-account.js' %}"></script>
+    <script type="text/javascript" src="{% static 'map/modifie-account.js' %}"></script>
 </body>
 
 </html>

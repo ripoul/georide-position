@@ -1,10 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 import requests
 import json
 from datetime import date, timedelta, datetime
 from .models import Profile
 from django.contrib.auth.models import User
 from django.db import IntegrityError
+from django.urls import reverse
 
 # Create your views here.
 from django.http import HttpResponse
@@ -156,4 +157,59 @@ def connectAccount(request):
         else:
             return HttpResponse(status=500)
         return HttpResponse(status=202)
+    return HttpResponse(status=405)
+
+
+def modifieAccountForm(request):
+    if request.user.is_authenticated:
+        user = request.user
+        profile = Profile.objects.get(user=user)
+        startDate = profile.startDate.strftime("%Y-%m-%d")
+        endDate = profile.endDate.strftime("%Y-%m-%d")
+        param = {
+            "id": user.username,
+            "email": user.email,
+            "startDate": startDate,
+            "endDate": endDate,
+            "token": profile.token,
+            "trackerID": profile.trackerID,
+        }
+        return render(request, "map/modifie-account.html", param)
+    return redirect(reverse(connectAccountForm))
+
+
+def modifieAccount(request):
+    if request.method == "POST":
+        if request.user.is_authenticated:
+            user = request.user
+            profile = Profile.objects.get(user=user)
+
+            username = request.POST.get("id")
+            email = request.POST.get("email")
+            token = request.POST.get("token")
+            trackerID = request.POST.get("trackerID")
+            startDate = request.POST.get("startDate")
+            endDate = request.POST.get("endDate")
+
+            if (
+                not username
+                or not email
+                or not token
+                or not trackerID
+                or not startDate
+                or not endDate
+            ):
+                return HttpResponse(status=400)
+
+            user.username = username
+            user.email = email
+            user.save()
+
+            profile.token = token
+            profile.trackerID = trackerID
+            profile.startDate = startDate
+            profile.endDate = endDate
+            profile.save()
+            return HttpResponse(status=202)
+        return HttpResponse(status=403)
     return HttpResponse(status=405)
