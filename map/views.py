@@ -10,7 +10,7 @@ from django.urls import reverse
 # Create your views here.
 from django.http import HttpResponse
 from .utils import get_vars
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 
 class georide_cli:
@@ -53,6 +53,7 @@ def road_trip(request, username):
         "username": username,
         "startDate": profile.startDate.strftime("%d/%m/%Y"),
         "endDate": profile.endDate.strftime("%d/%m/%Y"),
+        "connected": request.user.is_authenticated,
     }
     return render(request, "map/road-trip.html", param)
 
@@ -77,7 +78,10 @@ def getPositions(request, username):
 
 
 def getInfo(request):
-    return render(request, "map/get-info.html", {})
+    param = {
+        "connected": request.user.is_authenticated
+    }
+    return render(request, "map/get-info.html", param)
 
 
 def getToken(request):
@@ -149,6 +153,14 @@ def connectAccountForm(request):
     return render(request, "map/connect-account.html", {})
 
 
+def disconect(request):
+    if request.user.is_authenticated:
+        username = request.user.username
+        logout(request)
+        return redirect(reverse(road_trip, args=[username]))
+    return HttpResponse(status=403)
+
+
 def connectAccount(request):
     if request.method == "POST":
         username = request.POST.get("id")
@@ -177,6 +189,7 @@ def modifieAccountForm(request):
             "endDate": endDate,
             "token": profile.token,
             "trackerID": profile.trackerID,
+            "connected": request.user.is_authenticated,
         }
         return render(request, "map/modifie-account.html", param)
     return redirect(reverse(connectAccountForm))

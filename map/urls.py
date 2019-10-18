@@ -9,6 +9,7 @@ urlpatterns = [
     path("connectAccount", views.connectAccount, name="connectAccount"),
     path("modifie", views.modifieAccountForm, name="modifieAccountForm"),
     path("modifieAccount", views.modifieAccount, name="modifieAccount"),
+    path("disconect", views.disconect, name="disconect"),
     path("getInfo", views.getInfo, name="getInfo"),
     path("getToken", views.getToken, name="getToken"),
     path("getTrackers", views.getTrackers, name="getTrackers"),
