@@ -45,11 +45,11 @@ class georide_cli:
 
 geo = georide_cli()
 
+
 def index(request):
-    param = {
-        "connected": request.user.is_authenticated
-    }
+    param = {"connected": request.user.is_authenticated}
     return render(request, "map/index.html", param)
+
 
 def road_trip(request, username):
     user = User.objects.get(username=username)
@@ -83,9 +83,7 @@ def getPositions(request, username):
 
 
 def getInfo(request):
-    param = {
-        "connected": request.user.is_authenticated
-    }
+    param = {"connected": request.user.is_authenticated}
     return render(request, "map/get-info.html", param)
 
 
