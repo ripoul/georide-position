@@ -15,4 +15,6 @@ urlpatterns = [
     path("getTrackers", views.getTrackers, name="getTrackers"),
     path("positions/<username>", views.getPositions, name="positions"),
     path("trip/<username>", views.road_trip, name="road-trip"),
+    path("index.html", views.index, name="index"),
+    path("", views.index, name="index"),
 ]

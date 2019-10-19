@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Road-Trip</title>
+    {% include "map/all-import.html" %}
+</head>
+
+<body>
+    <div class="d-flex flex-column sticky-footer-wrapper">
+        {% include "map/nav-bar.html" %}
+        <main class="flex-fill">
+            <div class="container">
+                <h1>Georide road trip</h1>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Step 1 : Create account</h5>
+                                <p class="card-text">Create an account, fill all the informations requiered. You can
+                                    have help
+                                    on create account page with the information about georide.</p>
+                                <a class="btn btn-outline-success my-2 my-sm-0" href="/create" role="button">Create an
+                                    account</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Step 2 : share the url to everyone</h5>
+                                <p class="card-text">You can share this url : <a
+                                        href="#">https://georide.ripoul.fr/trip/your-username</a>. With this url, your
+                                    friend
+                                    can follow you live and have some indormations.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h3>That's it !</h3>
+                The user can select only the dates in your road trip.
+                <img width="100%" src="{% static 'map/img/trip.png' %}">
+            </div>
+        </main>
+        {% include "map/footer.html" %}
+    </div>
+</body>
+
+</html>

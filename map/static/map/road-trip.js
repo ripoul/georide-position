@@ -47,7 +47,7 @@ function generateRoute(url) {
 
         lastPoint = L.marker([last.latitude, last.longitude]);
         lastPoint.addTo(map);
-        let popupContent = `localisation actuelle : ${last.address}<br> Je roule à ${last.speed}km/h <br> A ${last.altitude}m d'altitude`
+        let popupContent = `current location : ${last.address}<br> speed : ${last.speed}km/h <br> altitude : ${last.altitude}m`
         lastPoint.bindPopup(popupContent).openPopup();
         document.querySelectorAll('.leaflet-popup-content').forEach(function (element) {
             // Now do something with my button
@@ -57,7 +57,7 @@ function generateRoute(url) {
         map.setView([last.latitude, last.longitude], 11);
 
         lastDate = new Date(last.fixtime)
-        toPrint = `Dernier mouvement reçu le ${lastDate.getDate()}/${lastDate.getMonth() + 1}/${lastDate.getFullYear()} à ${lastDate.getHours()}h${lastDate.getMinutes()}`;
+        toPrint = `Last info on selected dates : ${lastDate.getDate()}/${lastDate.getMonth() + 1}/${lastDate.getFullYear()} at ${lastDate.getHours()}h${lastDate.getMinutes()}`;
         document.getElementById("lastDate").innerHTML = toPrint;
     })
 }

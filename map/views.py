@@ -45,6 +45,11 @@ class georide_cli:
 
 geo = georide_cli()
 
+def index(request):
+    param = {
+        "connected": request.user.is_authenticated
+    }
+    return render(request, "map/index.html", param)
 
 def road_trip(request, username):
     user = User.objects.get(username=username)
@@ -158,7 +163,7 @@ def disconect(request):
         username = request.user.username
         logout(request)
         return redirect(reverse(road_trip, args=[username]))
-    return HttpResponse(status=403)
+    return redirect(reverse(index))
 
 
 def connectAccount(request):
