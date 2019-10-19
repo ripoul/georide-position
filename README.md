@@ -15,33 +15,26 @@ In this project I use [georide](https://georide.fr/). Georide is a gps tracker f
 
 ```sh
 pip install -r requirements.txt
+python manage.py migrate
 ```
 
 ## :wrench: Usage
 
-You need to set 5 environment variables to use the project : 
-- trackerID : it's the id of the tracker you want to follow
-- userGeoride : it's the user use to connect to your georide account
-- passwordGeoride : it's the password use to connect to your georide account
-- startDate : the start date of your road trip
-- endDate : the end date of your road trip
-
-To set those environment variables you can use a `.env` file in the root of the project. This file is build like that : 
-```
-trackerID=[your tracker id]
-userGeoride=[the email of your account]
-passwordGeoride=[the password of your account]
-startDate=[the start date of your road trip]
-endDate=[the end date of your road trip]
-```
-
-The date in the env variable has to be formated like that : `YYYY/MM/DD`
+for dev purpose you don't need anything else.
 
 To start the server : 
 
 ```sh
 python manage.py runserver
 ```
+
+For production you need to set the parameter for your database and the secret key of your app : 
+- db_host : the database host
+- db_name : the database name
+- db_pass : the database password
+- db_port : the database port (ex: 5432)
+- db_user : the database user 
+- secret_key : a long secret key
 
 ## :interrobang: Help with georide api
 

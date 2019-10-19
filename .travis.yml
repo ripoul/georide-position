@@ -15,6 +15,7 @@ after_success:
   - codecov
 before_deploy:
   - python manage.py collectstatic
+  - python manage.py migrate
 
 deploy:
   provider: gae

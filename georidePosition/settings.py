@@ -10,8 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
-import os
+import os, sys
 from dotenv import load_dotenv
+from map.utils import get_vars
 
 load_dotenv()
 
@@ -23,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "fsv9@#=3@gf@ik47bd$2((&)ttl6=l#2k7geg&9mcg%*^9h27c"
+SECRET_KEY = get_vars("secret_key") or "dev"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -89,6 +90,20 @@ DATABASES = {
     }
 }
 
+if os.getenv("GAE_ENV", "").startswith("standard") or os.getenv(
+    "travis", ""
+).lower().startswith("true"):
+    if "test" not in sys.argv:
+        DATABASES = {
+            "default": {
+                "ENGINE": "django.db.backends.postgresql",
+                "NAME": get_vars("db_name"),
+                "USER": get_vars("db_user"),
+                "PASSWORD": get_vars("db_pass"),
+                "HOST": get_vars("db_host"),
+                "PORT": get_vars("db_port"),
+            }
+        }
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -115,6 +130,8 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+DATE_INPUT_FORMATS = "%Y%m%d"
 
 
 # Static files (CSS, JavaScript, Images)

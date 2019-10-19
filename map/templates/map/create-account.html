@@ -1,0 +1,103 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Create Account</title>
+    {% include "map/all-import.html" %}
+</head>
+
+<body>
+    <div class="d-flex flex-column sticky-footer-wrapper">
+        {% include "map/nav-bar.html" %}
+        <main class="flex-fill">
+            <div class="container">
+                <article class="card-body mx-auto" style="max-width: 400px;">
+                    <h4 class="card-title mt-3 text-center">Create Account</h4>
+                    <p class="text-center">Get started with your free account</p>
+                    <p class="text-center">If you need help to get your georide token or the ID of your tracker, go to
+                        <a href="/getInfo" target="_blank">the help page.</a></p>
+                    <form id="form" method="POST" action="/createAccount" oninput="onInput();">
+                        {% csrf_token %}
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                            </div>
+                            <input id="id" name="id" class="form-control" placeholder="ID" type="text" required>
+                        </div> <!-- form-group// -->
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                            </div>
+                            <input name="email" class="form-control" placeholder="Email address" type="email" required>
+                        </div> <!-- form-group// -->
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fas fa-key"></i> </span>
+                            </div>
+                            <input name="token" class="form-control" placeholder="Your georide token" type="password"
+                                required>
+                        </div> <!-- form-group// -->
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fas fa-thumbtack"></i> </span>
+                            </div>
+                            <input name="trackerID" class="form-control" placeholder="Georide tracker ID" type="number"
+                                required>
+                        </div> <!-- form-group// -->
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                            </div>
+                            <input id="password" name="password" class="form-control" placeholder="Create password"
+                                type="password" required>
+                        </div> <!-- form-group// -->
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                            </div>
+                            <input id="password2" name="password2" class="form-control" placeholder="Repeat password"
+                                type="password" required>
+                        </div> <!-- form-group// -->
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fas fa-calendar-day"></i> </span>
+                            </div>
+                            <input id="startDate" name="startDate" class="form-control"
+                                placeholder="The first day of your road trip" type="date" required>
+                        </div> <!-- form-group// -->
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fas fa-calendar-day"></i> </span>
+                            </div>
+                            <input id="endDate" name="endDate" class="form-control"
+                                placeholder="The last day of your road trip" type="date" required>
+                        </div> <!-- form-group// -->
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-block"> Create Account </button>
+                        </div> <!-- form-group// -->
+                        <p class="text-center">Have an account? <a href="/connect">Log In</a> </p>
+                    </form>
+                </article>
+                <!-- Modal -->
+                <div id="modal" class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                ID already use !
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        {% include "map/footer.html" %}
+    </div>
+    <script type="text/javascript" src="{% static 'map/create-account.js' %}"></script>
+</body>
+
+</html>

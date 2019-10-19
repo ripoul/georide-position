@@ -3,70 +3,48 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Road-Trip</title>
-    <link rel="icon" href="{% static 'map/favicon.png' %}" />
-    <!--##### FONT AWESOME #####-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0-12/css/all.min.css"
-        integrity="sha256-cC4ByuxbguozEVx8jcKy94MFiGvxN9GwjCqZ8f3+yBk=" crossorigin="anonymous" />
-    <!--##### BOOTSTRAP #####-->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
-
-    <!--##### Date range picker #####-->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-
-    <!--##### LEAFLET #####-->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
-        integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
-        crossorigin="" />
-    <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
-        integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
-        crossorigin=""></script>
-
-    <link rel="stylesheet" type="text/css" href="{% static 'map/style.css' %}">
+    {% include "map/all-import.html" %}
 </head>
 
 <body>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-3" id="rangepickercontainer">
-                <input type="text" id="rangepicker" class="form-control">
+    <div class="d-flex flex-column sticky-footer-wrapper">
+        {% include "map/nav-bar.html" %}
+        <main class="flex-fill">
+            <div class="container">
+                <h1>Georide road trip</h1>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Step 1 : Create account</h5>
+                                <p class="card-text">Create an account, fill all the informations requiered. You can
+                                    have help
+                                    on create account page with the information about georide.</p>
+                                <a class="btn btn-outline-success my-2 my-sm-0" href="/create" role="button">Create an
+                                    account</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Step 2 : share the url to everyone</h5>
+                                <p class="card-text">You can share this url : <a
+                                        href="#">https://georide.ripoul.fr/trip/your-username</a>. With this url, your
+                                    friend
+                                    can follow you live and have some indormations.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h3>That's it !</h3>
+                The user can select only the dates in your road trip.
+                <img width="100%" src="{% static 'map/img/trip.png' %}">
             </div>
-            <div class="col-md-9">
-                <div id="lastDate" class="text-right"></div>
-                <div id="mapid"></div>
-            </div>
-
-        </div>
+        </main>
+        {% include "map/footer.html" %}
     </div>
-    <footer class="page-footer font-small blue">
-
-        <!-- Copyright -->
-        <div class="footer-copyright text-center py-3">
-            <a href="https://github.com/ripoul"><i class="fab fa-github"></i> @ripoul</a>
-        </div>
-        <!-- Copyright -->
-
-    </footer>
-    <script>
-        startDate = "{{ startDate }}";
-        endDate = "{{ endDate }}";
-    </script>
-    <script type="text/javascript" src="{% static 'map/script.js' %}"></script>
 </body>
 
 </html>
