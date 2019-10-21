@@ -3,9 +3,9 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path("create", views.createAccountForm, name="createAccountForm"),
+    path("sign-up", views.createAccountForm, name="createAccountForm"),
     path("createAccount", views.createAccount, name="createAccount"),
-    path("connect", views.connectAccountForm, name="connectAccountForm"),
+    path("sign-in", views.connectAccountForm, name="connectAccountForm"),
     path("connectAccount", views.connectAccount, name="connectAccount"),
     path("modify", views.modifyAccountForm, name="modifyAccountForm"),
     path("modifyAccount", views.modifyAccount, name="modifyAccount"),
