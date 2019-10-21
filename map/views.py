@@ -47,7 +47,8 @@ geo = georide_cli()
 
 
 def index(request):
-    param = {"connected": request.user.is_authenticated}
+    profiles = Profile.objects.filter
+    param = {"connected": request.user.is_authenticated, "profiles": profiles}
     return render(request, "map/index.html", param)
 
 
