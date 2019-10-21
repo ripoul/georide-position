@@ -9,7 +9,7 @@ class MapCase(TestCase):
 
     def test_create_form(self):
         c = Client()
-        response = c.get("/create")
+        response = c.get("/sign-up")
         self.assertEqual(response.status_code, 200, "unexpected return code")
 
     def test_modifie_form(self):
@@ -19,5 +19,5 @@ class MapCase(TestCase):
 
     def test_connect_form(self):
         c = Client()
-        response = c.get("/connect")
+        response = c.get("/sign-in")
         self.assertEqual(response.status_code, 200, "unexpected return code")
