@@ -5,6 +5,12 @@
 <head>
     <title>Road-Trip</title>
     {% include "map/all-import.html" %}
+
+    <style>
+        .card {
+            height: 100%;
+        }
+    </style>
 </head>
 
 <body>
@@ -12,9 +18,35 @@
         {% include "map/nav-bar.html" %}
         <main class="flex-fill">
             <div class="container">
-                <h1>Georide road trip</h1>
+                <h2>Georide road trip ! Why ?</h2>
+
+                <div class="card">
+                    <div class="card-body">
+                        Georide allow to share a trip only when we have already finish it. My application allow the
+                        georide user
+                        to share his position for the time he need. If the time is not finish, we can follow his
+                        position live.<br><br>
+                        <div class="d-flex justify-content-between">
+                            <a class="btn btn-outline-dark my-2 my-sm-0" href="#share-road-trip" role="button">I want to
+                                share my road trip</a>
+                            <a class="btn btn-outline-dark my-2 my-sm-0" href="#list-road-trip" role="button">I want to
+                                see shared road trip</a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <h2 id="share-road-trip" class="mt-md-3">You want to share your road trip ?</h2>
                 <div class="row">
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Step 0 : You need a georide account !</h5>
+                                <p class="card-text">You can check their <a href="https://georide.fr/">website</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">Step 1 : Create account</h5>
@@ -26,7 +58,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">Step 2 : share the url to everyone</h5>
@@ -38,15 +70,25 @@
                         </div>
                     </div>
                 </div>
-                <h3>That's it !</h3>
+                <h4 class="mt-md-3">That's it !</h4>
                 The user can select only the dates in your road trip.
                 <img width="100%" src="{% static 'map/img/trip.png' %}">
-                <h3>Open-Source</h3>
+
+                <h2 id="list-road-trip" class="mt-md-3">You want to follow a road trip ?</h2>
+
+                All the link bellow are a shared road trip : <br>
+                <ul>
+                    {% for profile in profiles %}
+                    <li> <a href="/trip/{{ profile.user.username }}">{{ profile.user.username }}</a></li>
+                    {% endfor %}
+                </ul>
+
+                <h2 class="mt-md-3">Open-Source</h2>
                 This project is open-source ! Feel free to share it to your friends.<br>
                 All contributions are welcome. The project is on github <a
                     href="https://github.com/ripoul/georide-position">here</a>.
 
-                <h3>Georide</h3>
+                <h2 class="mt-md-3">Georide</h2>
                 Georide is a tracker for motorcycle. You can check their <a href="https://georide.fr/">website</a>,
                 their work are awesome ! Even if I use the georide API, there are not part of this work.
             </div>
