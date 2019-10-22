@@ -41,7 +41,7 @@ class georide_cli:
         for tracker in r:
             ret.append([tracker["trackerId"], tracker["trackerName"]])
         return ret
-    
+
     def revokeToken(self, token):
         url = "https://api.georide.fr/user/logout"
         requestHeaders = {"Authorization": "Bearer %s" % (token)}
@@ -251,4 +251,3 @@ def revokeToken(request):
             return HttpResponse(status=geo.revokeToken(token))
         return HttpResponse(status=403)
     return HttpResponse(status=405)
-        
