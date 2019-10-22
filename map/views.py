@@ -180,7 +180,7 @@ def connectAccount(request):
     return HttpResponse(status=405)
 
 
-def modifieAccountForm(request):
+def modifyAccountForm(request):
     if request.user.is_authenticated:
         user = request.user
         profile = Profile.objects.get(user=user)
@@ -195,11 +195,11 @@ def modifieAccountForm(request):
             "trackerID": profile.trackerID,
             "connected": request.user.is_authenticated,
         }
-        return render(request, "map/modifie-account.html", param)
+        return render(request, "map/modify-account.html", param)
     return redirect(reverse(connectAccountForm))
 
 
-def modifieAccount(request):
+def modifyAccount(request):
     if request.method == "POST":
         if request.user.is_authenticated:
             user = request.user

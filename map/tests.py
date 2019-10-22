@@ -12,9 +12,9 @@ class MapCase(TestCase):
         response = c.get("/sign-up")
         self.assertEqual(response.status_code, 200, "unexpected return code")
 
-    def test_modifie_form(self):
+    def test_modify_form(self):
         c = Client()
-        response = c.get("/modifie")
+        response = c.get("/modify")
         self.assertEqual(response.status_code, 302, "unexpected return code")
 
     def test_connect_form(self):
