@@ -15,7 +15,7 @@ $('#form').submit(function () {
     return false;
 });
 
-$("#token-info").tooltip({"placement": "right", "title": "Tokens are encrypted and stored in database. You can revoke a token using the help page (link above)."});
+$("#token-info").tooltip({"placement": "right", "title": "Tokens are encrypted and stored in database. You can revoke a token using the Modifie Account page when you create an account."});
 
 function onInput() {
     password = document.querySelector("#password");
