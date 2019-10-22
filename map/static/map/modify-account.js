@@ -24,3 +24,19 @@ function onInput() {
     endDate.setCustomValidity(new Date(startDate.value) > new Date(endDate.value) ? "EndDate has to be after startDate." : "")
 }
     
+$('#form_revoke_token').submit(function () {
+    $.ajax({
+        url: $('#form_revoke_token').attr('action'),
+        type: 'POST',
+        data: $('#form_revoke_token').serialize(),
+        success: function (data) {
+            $('#modal-revoke-token-ok').modal();
+            return;
+        },
+        error: function (e) {
+            $('#modal-revoke-token-ko').modal();
+            return;
+        }
+    });
+    return false;
+});

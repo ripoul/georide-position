@@ -9,6 +9,7 @@ urlpatterns = [
     path("connectAccount", views.connectAccount, name="connectAccount"),
     path("modify", views.modifyAccountForm, name="modifyAccountForm"),
     path("modifyAccount", views.modifyAccount, name="modifyAccount"),
+    path("revoke-token", views.revokeToken, name="revokeToken"),
     path("disconect", views.disconect, name="disconect"),
     path("getInfo", views.getInfo, name="getInfo"),
     path("getToken", views.getToken, name="getToken"),

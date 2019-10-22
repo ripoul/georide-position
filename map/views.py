@@ -42,6 +42,12 @@ class georide_cli:
             ret.append([tracker["trackerId"], tracker["trackerName"]])
         return ret
 
+    def revokeToken(self, token):
+        url = "https://api.georide.fr/user/logout"
+        requestHeaders = {"Authorization": "Bearer %s" % (token)}
+        r = requests.post(url, headers=requestHeaders)
+        return r.status_code
+
 
 geo = georide_cli()
 
@@ -232,5 +238,16 @@ def modifyAccount(request):
             profile.endDate = endDate
             profile.save()
             return HttpResponse(status=202)
+        return HttpResponse(status=403)
+    return HttpResponse(status=405)
+
+
+def revokeToken(request):
+    if request.method == "POST":
+        if request.user.is_authenticated:
+            user = request.user
+            profile = Profile.objects.get(user=user)
+            token = profile.token
+            return HttpResponse(status=geo.revokeToken(token))
         return HttpResponse(status=403)
     return HttpResponse(status=405)
