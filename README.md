@@ -67,6 +67,8 @@ The date has to be formated like that : `YYYYMMDDTHHmmSS`.
 
 ## :white_check_mark: Run tests
 
+To run every tests, export `GEORIDE_EMAIL` and `GEORIDE_PASSWORD` environment variables.
+
 ```sh
 tox
 ```
