@@ -10,7 +10,7 @@ install:
   - pip install -r requirements.txt
 
 script:
-  - tox -e isort,black,citest
+  - tox
 after_success:
   - codecov
 before_deploy:
