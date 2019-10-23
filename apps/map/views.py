@@ -1,16 +1,18 @@
-from django.shortcuts import render, redirect
-import requests
 import json
-from datetime import date, timedelta, datetime
-from .models import Profile
+from datetime import date, datetime, timedelta
+
+import requests
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.db import IntegrityError
-from django.urls import reverse
 
 # Create your views here.
 from django.http import HttpResponse
+from django.shortcuts import redirect, render
+from django.urls import reverse
+
+from .models import Profile
 from .utils import get_vars
-from django.contrib.auth import authenticate, login, logout
 
 
 class georide_cli:
