@@ -14,7 +14,7 @@ import os
 import sys
 
 from dotenv import load_dotenv
-from position.map.utils import get_vars
+from position.maps.utils import get_vars
 
 load_dotenv()
 
@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "maintenance_mode",
     "rest_framework",
-    "position.map",
+    "position.accounts",
+    "position.maps",
     "position.services",
 ]
 
@@ -83,6 +84,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "georide_position.wsgi.application"
 
+AUTH_USER_MODEL = "accounts.User"
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases

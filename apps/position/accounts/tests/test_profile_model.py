@@ -26,13 +26,12 @@ class ProfileModelTestCase(TestCase, AccountsMixin):
             email=user.email,
             password=user.password,
             token=token,
-            trackerID=tracker_id,
-            startDate=start_date,
-            endDate=end_date,
+            tracker_id=tracker_id,
+            start_date=start_date,
+            end_date=end_date,
         )
         assert_that(profile, is_(not_none()))
         assert_that(profile.user, is_(not_none()))
-        assert_that(profile.token, is_(token))
-        assert_that(profile.trackerID, is_(tracker_id))
-        assert_that(profile.startDate, is_(start_date))
-        assert_that(profile.endDate, is_(end_date))
+        assert_that(profile.tracker_id, is_(tracker_id))
+        assert_that(profile.start_date, is_(start_date))
+        assert_that(profile.end_date, is_(end_date))

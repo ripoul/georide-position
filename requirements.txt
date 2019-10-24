@@ -11,6 +11,7 @@ codecov==2.0.15
 coverage==4.5.4
 cryptography==2.8
 Django==2.2.6
+django-extensions==2.1.6
 django-fernet-fields==0.6
 django-maintenance-mode==0.13.3
 djangorestframework==3.10.3
@@ -40,5 +41,3 @@ sqlparse==0.3.0
 toml==0.10.0
 tox==3.14.0
 urllib3==1.25.6
-django-extensions==2.1.6
-djangorestframework==3.9.2

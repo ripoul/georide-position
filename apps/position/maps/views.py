@@ -10,8 +10,8 @@ from django.db import IntegrityError
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse
+from position.accounts.models import Profile
 
-from .models import Profile
 from .utils import get_vars
 
 
