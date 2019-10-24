@@ -23,6 +23,16 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "gearsof44",
+      "name": "gearsof44",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/22347936?v=4",
+      "profile": "https://github.com/gearsof44",
+      "contributions": [
+        "code",
+        "test"
+      ]
     }
   ],
   "contributorsPerLine": 7,
@@ -30,5 +40,5 @@
   "projectOwner": "ripoul",
   "repoType": "github",
   "repoHost": "https://github.com",
-  "badgeTemplate":"[![All Contributors](https://img.shields.io/badge/all_contributors-<%= contributors.length %>-orange.svg?style=flat-square)](#-contributing)"
+  "badgeTemplate": "[![All Contributors](https://img.shields.io/badge/all_contributors-<%= contributors.length %>-orange.svg?style=flat-square)](#-contributing)"
 }
