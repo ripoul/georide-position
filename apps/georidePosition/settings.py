@@ -145,8 +145,3 @@ STATIC_ROOT = "static"
 
 if os.getenv("GAE_ENV", "").startswith("standard"):
     MAINTENANCE_MODE = False
-
-# Georide Configuration
-
-GEORIDE_EMAIL = os.getenv("GEORIDE_EMAIL", None)
-GEORIDE_PASSWORD = os.getenv("GEORIDE_PASSWORD", None)
