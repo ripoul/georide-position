@@ -14,11 +14,21 @@
         "code",
         "maintenance"
       ]
+    },
+    {
+      "login": "TristanElain",
+      "name": "TristanElain",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/24540366?v=4",
+      "profile": "https://github.com/TristanElain",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
   "projectName": "georide-position",
   "projectOwner": "ripoul",
   "repoType": "github",
-  "repoHost": "https://github.com"
+  "repoHost": "https://github.com",
+  "badgeTemplate":"[![All Contributors](https://img.shields.io/badge/all_contributors-<%= contributors.length %>-orange.svg?style=flat-square)](#-contributing)"
 }
