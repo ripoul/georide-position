@@ -77,7 +77,7 @@ python manage.py test
 
 * Github: [@ripoul](https://github.com/ripoul)
 
-## 🤝 Contributing
+## 🤝 Contributors
 
 Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/ripoul/georide-position/issues).
 
