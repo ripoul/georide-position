@@ -1,0 +1,24 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "ripoul",
+      "name": "Jules LE BRIS",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/23215341?v=4",
+      "profile": "https://github.com/ripoul",
+      "contributions": [
+        "code",
+        "maintenance"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "georide-position",
+  "projectOwner": "ripoul",
+  "repoType": "github",
+  "repoHost": "https://github.com"
+}
