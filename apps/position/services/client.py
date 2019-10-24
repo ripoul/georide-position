@@ -2,7 +2,7 @@ from django.conf import settings
 from django.contrib.auth import get_user_model
 from rest_framework.test import APIClient
 
-User = get_user_model()
+from position.map.models import GeorideUser
 
 
 class GeorideClient(APIClient):
@@ -11,11 +11,11 @@ class GeorideClient(APIClient):
         email = settings.GEORIDE_EMAIL
         password = settings.GEORIDE_PASSWORD
         if email and password:
-            self.user, _ = User.objects.get_or_create(
+            self.user, _ = GeorideUser.objects.get_or_create(
                 username="georide_test_client", email=email, password=password
             )
         else:
-            self.user, _ = User.objects.get_or_create(
+            self.user, _ = GeorideUser.objects.get_or_create(
                 username="georide_test_client",
                 email="test.georide@gmail.com",
                 password="incorrect",

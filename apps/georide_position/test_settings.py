@@ -1,5 +1,5 @@
 # flake8: noqa
-from georidePosition.settings import *
+from georide_position.settings import *
 
 DEBUG = True
 

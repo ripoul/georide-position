@@ -8,12 +8,6 @@ from ..views import geo
 User = get_user_model()
 
 
-GEORIDE_ACCOUNT_IS_SETUP = not settings.GEORIDE_EMAIL and not settings.GEORIDE_PASSWORD
-GENERIC_SETUP_MESSAGE = (
-    "export GEORIDE_EMAIL and GEORIDE_PASSWORD environment variables to run this test"
-)
-
-
 class AccountsMixin(object):
     def any_user(
         self,
@@ -21,15 +15,9 @@ class AccountsMixin(object):
         password="toto_44",
         email="test_user@gmail.com",
         save=True,
+        with_token=False,
     ):
         user = User(username=username, password=password, email=email)
         if save:
             user.save()
         return user
-
-
-class GeorideMixin(object):
-    def any_token(self, user=None):
-        user = user or GeorideClient().user
-        token = geo.getNewToken(user.email, user.password)
-        return token

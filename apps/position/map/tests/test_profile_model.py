@@ -36,25 +36,3 @@ class ProfileModelTestCase(TestCase, AccountsMixin):
         assert_that(profile.trackerID, is_(tracker_id))
         assert_that(profile.startDate, is_(start_date))
         assert_that(profile.endDate, is_(end_date))
-
-    def test_create_profile__existing_user(self):
-        """
-        Given details for a profile
-        When I try to create this profile for a pair (username, email, password) that exist
-        Then I get an exception
-        """
-        user = self.any_user()
-        token = "XXXX"
-        tracker_id = 1
-        start_date = datetime.now() - timedelta(days=1)
-        end_date = datetime.now() + timedelta(days=1)
-        with self.assertRaises(IntegrityError) as e:
-            profile = Profile.objects.create_profile(
-                username=user.username,
-                email=user.email,
-                password=user.password,
-                token=token,
-                trackerID=tracker_id,
-                startDate=start_date,
-                endDate=end_date,
-            )

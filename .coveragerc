@@ -6,4 +6,4 @@ omit = \
     **/admin.py, \
     **/tests/test_*.py, \
     apps/setup.py, \
-    apps/georidePosition/wsgi.py, \
+    apps/georide_position/wsgi.py, \
