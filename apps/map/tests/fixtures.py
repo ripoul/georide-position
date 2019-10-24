@@ -1,7 +1,9 @@
 from django.conf import settings
 from django.contrib.auth import get_user_model
 
+from ..client import GeorideClient
 from ..models import Profile
+from ..views import geo
 
 User = get_user_model()
 
@@ -24,3 +26,10 @@ class AccountsMixin(object):
         if save:
             user.save()
         return user
+
+
+class GeorideMixin(object):
+    def any_token(self, user=None):
+        user = user or GeorideClient().user
+        token = geo.getNewToken(user.email, user.password)
+        return token

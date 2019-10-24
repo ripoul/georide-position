@@ -11,6 +11,12 @@ class GeorideClient(APIClient):
         email = settings.GEORIDE_EMAIL
         password = settings.GEORIDE_PASSWORD
         if email and password:
-            self.user = User.objects.get_or_create(
+            self.user, _ = User.objects.get_or_create(
                 username="georide_test_client", email=email, password=password
+            )
+        else:
+            self.user, _ = User.objects.get_or_create(
+                username="georide_test_client",
+                email="test.georide@gmail.com",
+                password="incorrect",
             )

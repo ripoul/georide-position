@@ -1,0 +1,9 @@
+[run]
+source = apps
+omit = \
+    **/migrations/*.py, \
+    **/management/commands/*.py, \
+    **/admin.py, \
+    **/tests/test_*.py, \
+    apps/setup.py, \
+    apps/georidePosition/wsgi.py, \
