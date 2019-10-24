@@ -1,4 +1,5 @@
 <h1 align="center">Welcome to georide-position 👋</h1>
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors)
 
 [![Build Status](https://travis-ci.org/ripoul/georide-position.svg?branch=master)](https://travis-ci.org/ripoul/georide-position)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/python/black)
@@ -88,3 +89,19 @@ Give a ⭐️ if this project helped you!
 
 Copyright © 2019 [Jules LE BRIS](https://github.com/ripoul).<br />
 This project is [MIT](https://github.com/ripoul/georide-position/blob/master/LICENSE) licensed.
+
+## Contributors ✨
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore -->
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/ripoul"><img src="https://avatars3.githubusercontent.com/u/23215341?v=4" width="100px;" alt="Jules LE BRIS"/><br /><sub><b>Jules LE BRIS</b></sub></a><br /><a href="https://github.com/ripoul/georide-position/commits?author=ripoul" title="Code">💻</a> <a href="#maintenance-ripoul" title="Maintenance">🚧</a></td>
+  </tr>
+</table>
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
