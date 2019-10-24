@@ -1,6 +1,6 @@
 <h1 align="center">Welcome to georide-position 👋</h1>
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors)
 
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#Contributing)
 [![Build Status](https://travis-ci.org/ripoul/georide-position.svg?branch=master)](https://travis-ci.org/ripoul/georide-position)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/python/black)
 [![codecov](https://codecov.io/gh/ripoul/georide-position/branch/master/graph/badge.svg)](https://codecov.io/gh/ripoul/georide-position)
@@ -81,17 +81,6 @@ python manage.py test
 
 Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/ripoul/georide-position/issues).
 
-## Show your support
-
-Give a ⭐️ if this project helped you!
-
-## 📝 License
-
-Copyright © 2019 [Jules LE BRIS](https://github.com/ripoul).<br />
-This project is [MIT](https://github.com/ripoul/georide-position/blob/master/LICENSE) licensed.
-
-## Contributors ✨
-
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
@@ -105,3 +94,12 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
+
+## Show your support
+
+Give a ⭐️ if this project helped you!
+
+## 📝 License
+
+Copyright © 2019 [Jules LE BRIS](https://github.com/ripoul).<br />
+This project is [MIT](https://github.com/ripoul/georide-position/blob/master/LICENSE) licensed.
