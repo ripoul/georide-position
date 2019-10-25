@@ -1,4 +1,5 @@
-from django.test import TestCase, Client
+from django.test import Client, TestCase
+
 
 # Create your tests here.
 class MapCase(TestCase):

@@ -1,5 +1,6 @@
-from google.cloud import firestore
 import os
+
+from google.cloud import firestore
 
 
 def get_vars(name):

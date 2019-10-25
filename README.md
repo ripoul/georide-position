@@ -16,8 +16,8 @@ In this project I use [georide](https://georide.fr/). Georide is a gps tracker f
 ## :hammer: Install
 
 ```sh
-pip install -r requirements.txt
-python manage.py migrate
+pip install --user tox
+tox
 ```
 
 ## :wrench: Usage
@@ -27,6 +27,7 @@ for dev purpose you don't need anything else.
 To start the server : 
 
 ```sh
+source .tox/test/bin/activate
 python manage.py runserver
 ```
 
@@ -68,8 +69,10 @@ The date has to be formated like that : `YYYYMMDDTHHmmSS`.
 
 ## :white_check_mark: Run tests
 
+To run every tests, export `GEORIDE_EMAIL` and `GEORIDE_PASSWORD` environment variables.
+
 ```sh
-python manage.py test
+tox
 ```
 
 ## Author

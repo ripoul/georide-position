@@ -1,0 +1,4 @@
+global-include *
+prune dist
+global-exclude .DS_Store
+global-exclude *.pyc

@@ -1,5 +1,5 @@
 runtime: python37
-entrypoint: gunicorn -b :$PORT georidePosition.wsgi
+entrypoint: gunicorn -b :$PORT apss.georide_position.wsgi
 
 handlers:
 - url: /static
