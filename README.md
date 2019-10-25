@@ -5,6 +5,7 @@
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/python/black)
 [![codecov](https://codecov.io/gh/ripoul/georide-position/branch/master/graph/badge.svg)](https://codecov.io/gh/ripoul/georide-position)
 [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=ripoul/georide-position)](https://dependabot.com)
+[![Requirements Status](https://requires.io/github/ripoul/georide-position/requirements.svg?branch=master)](https://requires.io/github/ripoul/georide-position/requirements/?branch=master)
 
 > get the last day deplacement of the georide tracker for public sharing (road trip for example)
 
