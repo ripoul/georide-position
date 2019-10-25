@@ -1,6 +1,6 @@
 <h1 align="center">Welcome to georide-position 👋</h1>
 
-[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors)
+[![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors)
 [![Build Status](https://travis-ci.org/ripoul/georide-position.svg?branch=master)](https://travis-ci.org/ripoul/georide-position)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/python/black)
 [![codecov](https://codecov.io/gh/ripoul/georide-position/branch/master/graph/badge.svg)](https://codecov.io/gh/ripoul/georide-position)
@@ -91,6 +91,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/ripoul"><img src="https://avatars3.githubusercontent.com/u/23215341?v=4" width="100px;" alt="Jules LE BRIS"/><br /><sub><b>Jules LE BRIS</b></sub></a><br /><a href="https://github.com/ripoul/georide-position/commits?author=ripoul" title="Code">💻</a> <a href="#maintenance-ripoul" title="Maintenance">🚧</a></td>
     <td align="center"><a href="https://github.com/TristanElain"><img src="https://avatars1.githubusercontent.com/u/24540366?v=4" width="100px;" alt="TristanElain"/><br /><sub><b>TristanElain</b></sub></a><br /><a href="https://github.com/ripoul/georide-position/commits?author=TristanElain" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/gearsof44"><img src="https://avatars1.githubusercontent.com/u/22347936?v=4" width="100px;" alt="gearsof44"/><br /><sub><b>gearsof44</b></sub></a><br /><a href="https://github.com/ripoul/georide-position/commits?author=gearsof44" title="Code">💻</a> <a href="https://github.com/ripoul/georide-position/commits?author=gearsof44" title="Tests">⚠️</a></td>
+    <td align="center"><a href="https://github.com/Airthee"><img src="https://avatars3.githubusercontent.com/u/13355624?v=4" width="100px;" alt="Raphaël TISON"/><br /><sub><b>Raphaël TISON</b></sub></a><br /><a href="https://github.com/ripoul/georide-position/commits?author=Airthee" title="Code">💻</a></td>
   </tr>
 </table>
 
