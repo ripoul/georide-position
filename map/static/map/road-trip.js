@@ -57,7 +57,15 @@ function generateRoute(url) {
         map.setView([last.latitude, last.longitude], 11);
 
         lastDate = new Date(last.fixtime)
-        toPrint = `Last info on selected dates : ${lastDate.getDate()}/${lastDate.getMonth() + 1}/${lastDate.getFullYear()} at ${lastDate.getHours()}h${lastDate.getMinutes()}`;
+
+        // Format date
+        const dateStr = lastDate.getDate().toString().padStart(2, '0');
+        const monthStr = (lastDate.getMonth() + 1).toString().padStart(2, '0');
+        const yearStr = lastDate.getFullYear().toString().padStart(4, '0');
+        const hourStr = lastDate.getHours().toString().padStart(2, '0');
+        const minuteStr = lastDate.getMinutes().toString().padStart(2, '0');
+
+        toPrint = `Last info on selected dates : ${dateStr}/${monthStr}/${yearStr} at ${hourStr}h${minuteStr}`;
         document.getElementById("lastDate").innerHTML = toPrint;
     })
 }
