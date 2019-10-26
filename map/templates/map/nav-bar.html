@@ -1,17 +1,15 @@
-{% if connected %}
 <nav class="navbar navbar-light bg-light" style="margin-bottom: 5px;">
-    <a href="/" class="navbar-brand">Georide Road Trip</a>
+    <a class="navbar-brand" href="/">
+        <img src="/static/map/img/logo_full.svg" width="60" height="60" class="d-inline-block align-top" alt="">
+        Georide Road Trip
+    </a>
     <span>
-        <a class="btn btn-outline-success my-2 my-sm-0" href="/modify" role="button">Modify Account</a>
-        <a class="btn btn-outline-danger my-2 my-sm-0" href="/disconect" role="button">Sign Out</a>
+        {% if connected %}
+            <a class="btn btn-outline-success my-2 my-sm-0" href="/modify" role="button">Modify Account</a>
+            <a class="btn btn-outline-danger my-2 my-sm-0" href="/disconect" role="button">Sign Out</a>
+        {% else %}
+            <a class="btn btn-outline-success my-2 my-sm-0" href="/sign-in" role="button">Sign In</a>
+            <a class="btn btn-outline-success my-2 my-sm-0" href="/sign-up" role="button">Sign Up</a>
+        {% endif %}
     </span>
 </nav>
-{% else %}
-<nav class="navbar navbar-light bg-light" style="margin-bottom: 5px;">
-    <a href="/" class="navbar-brand">Georide Road Trip</a>
-    <span>
-        <a class="btn btn-outline-success my-2 my-sm-0" href="/sign-in" role="button">Sign In</a>
-        <a class="btn btn-outline-success my-2 my-sm-0" href="/sign-up" role="button">Sign Up</a>
-    </span>
-</nav>
-{% endif %}
