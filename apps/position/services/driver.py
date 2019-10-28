@@ -1,11 +1,32 @@
 import requests
+from django.core.cache import cache
 from rest_framework import status
 from rest_framework.response import Response
 
+from .exceptions import handle_georide_api_http_error
 from .serializers import PositionSerializer, TokenSerializer, TrackSerializer
 
 
-class GeorideUnauthenticatedDriver(object):
+class GeorideDriver(object):
+    def _get_token_cache_key(self, email, password):
+        return f"{email}_{password}_georide_token"
+
+    def _get_token_from_cache(self, email, password):
+        cache_key = self._get_token_cache_key(email, password)
+        cached_token = cache.get(cache_key)
+        if cached_token:
+            return cached_token
+
+    def _set_token_in_cache(self, email, password, token):
+        cache_key = self._get_token_cache_key(email, password)
+        cache.set(cache_key, token)
+
+    def _remove_token_from_cache(self, email, password):
+        cache_key = self._get_token_cache_key(email, password)
+        cache.delete(cache_key)
+
+
+class GeorideAnonymousDriver(GeorideDriver):
     def _get_authorization_header(self, token):
         return {"Authorization": f"Bearer {token}"}
 
@@ -21,6 +42,8 @@ class GeorideUnauthenticatedDriver(object):
         response = requests.get(
             url, params=payload, headers=self._get_authorization_header(token)
         )
+        with handle_georide_api_http_error():
+            response.raise_for_status()
         if response.status_code == status.HTTP_401_UNAUTHORIZED:
             return Response(
                 {"error": "bad credential (change it in your profile)"},
@@ -29,18 +52,28 @@ class GeorideUnauthenticatedDriver(object):
         return Response(response.text, content_type="application/json")
 
     def get_new_token(self, email, password):
-        url = "https://api.georide.fr/user/login"
-        payload = {"email": email, "password": password}
-        response = requests.post(url, data=payload)
-        serializer = TokenSerializer(data=response.json())
-        serializer.is_valid(raise_exception=True)
-        return serializer.data["authToken"]
+        cached_token = self._get_token_from_cache(email, password)
+        if cached_token:
+            return cached_token
+        else:
+            url = "https://api.georide.fr/user/login"
+            payload = {"email": email, "password": password}
+            response = requests.post(url, data=payload)
+            with handle_georide_api_http_error():
+                response.raise_for_status()
+            serializer = TokenSerializer(data=response.json())
+            serializer.is_valid(raise_exception=True)
+            token = serializer.data["authToken"]
+            self._set_token_in_cache(email, password, token)
+            return token
 
     def get_trackers_id(self, token):
         response = requests.get(
             "https://api.georide.fr/user/trackers",
             headers=self._get_authorization_header(token),
         )
+        with handle_georide_api_http_error():
+            response.raise_for_status()
         serializer = TrackSerializer(data=response.json(), many=True)
         serializer.is_valid(raise_exception=True)
         tracker_list = [
@@ -49,16 +82,19 @@ class GeorideUnauthenticatedDriver(object):
         ]
         return tracker_list
 
-    def revoke_token(self, token):
+    def revoke_token(self, token, email, password):
         url = "https://api.georide.fr/user/logout"
         response = requests.post(url, headers=self._get_authorization_header(token))
+        with handle_georide_api_http_error():
+            response.raise_for_status()
+        self._remove_token_from_cache(email, password)
         return response.status_code
 
 
-georide_unauthenticated_driver = GeorideUnauthenticatedDriver()
+georide_anonymous_driver = GeorideAnonymousDriver()
 
 
-class GeorideDriver(object):
+class GeorideDriverAuthenticated(GeorideDriver):
     def __init__(self, user):
         self.user = user
 
@@ -85,20 +121,30 @@ class GeorideDriver(object):
         return Response(response.text, content_type="application/json")
 
     def get_new_token(self):
-        url = "https://api.georide.fr/user/login"
-        payload = {"email": self.user.email, "password": self.user.password}
-        response = requests.post(url, data=payload)
-        serializer = TokenSerializer(data=response.json())
-        serializer.is_valid(raise_exception=True)
-        self.user.token = serializer.data["authToken"]
+        cached_token = self._get_token_from_cache(self.user.email, self.user.password)
+        if cached_token:
+            token = cached_token
+        else:
+            url = "https://api.georide.fr/user/login"
+            payload = {"email": self.user.email, "password": self.user.password}
+            response = requests.post(url, data=payload)
+            with handle_georide_api_http_error():
+                response.raise_for_status()
+            serializer = TokenSerializer(data=response.json())
+            serializer.is_valid(raise_exception=True)
+            token = serializer.data["authToken"]
+            self._set_token_in_cache(self.user.email, self.user.password, token)
+        self.user.token = token
         self.user.save()
-        return serializer.data["authToken"]
+        return token
 
     def get_trackers_id(self):
         response = requests.get(
             "https://api.georide.fr/user/trackers",
             headers=self._get_authorization_header(),
         )
+        with handle_georide_api_http_error():
+            response.raise_for_status()
         serializer = TrackSerializer(data=response.json(), many=True)
         serializer.is_valid(raise_exception=True)
         # TODO: Edit profile model to a one many to user and register every trackers
@@ -111,6 +157,9 @@ class GeorideDriver(object):
     def revoke_token(self):
         url = "https://api.georide.fr/user/logout"
         response = requests.post(url, headers=self._get_authorization_header())
+        with handle_georide_api_http_error():
+            response.raise_for_status()
         self.user.token = None
         self.user.save()
+        self._remove_token_from_cache(self.user.email, self.user.password)
         return response.status_code

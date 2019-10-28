@@ -59,9 +59,9 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     @property
     def driver(self):
-        from position.services.driver import GeorideDriver
+        from position.services.driver import GeorideDriverAuthenticated
 
-        return GeorideDriver(self)
+        return GeorideDriverAuthenticated(self)
 
 
 class ProfileManager(models.Manager):
