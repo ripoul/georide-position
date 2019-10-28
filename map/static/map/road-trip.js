@@ -27,6 +27,9 @@ map.addLayer(osmLayer);
 function generateRoute(url) {
     fetch(url)
     .then(function (response) {
+        if(response.status==401){
+            throw "Token must be expired or not correct."
+        }
         return response.text();
     }).then(positions => {
         listPoints = []
@@ -67,6 +70,8 @@ function generateRoute(url) {
 
         toPrint = `Last info on selected dates : ${dateStr}/${monthStr}/${yearStr} at ${hourStr}h${minuteStr}`;
         document.getElementById("lastDate").innerHTML = toPrint;
+    }).catch(error => {
+        $('.alert').alert();
     })
 }
 
