@@ -1,5 +1,9 @@
 <h1 align="center">Welcome to georide-position 👋</h1>
 
+<p align="center">
+  <img style="text-align=center;" src="/map/static/map/img/logo_full.svg" width="20%"></img>
+</p>
+
 [![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors)
 [![Build Status](https://travis-ci.org/ripoul/georide-position.svg?branch=master)](https://travis-ci.org/ripoul/georide-position)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/python/black)
