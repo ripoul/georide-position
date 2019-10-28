@@ -71,7 +71,7 @@ function generateRoute(url) {
         toPrint = `Last info on selected dates : ${dateStr}/${monthStr}/${yearStr} at ${hourStr}h${minuteStr}`;
         document.getElementById("lastDate").innerHTML = toPrint;
     }).catch(error => {
-        $('.alert').alert();
+        $('.alert').collapse();
     })
 }
 
