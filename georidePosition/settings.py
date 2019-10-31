@@ -140,5 +140,7 @@ DATE_INPUT_FORMATS = "%Y%m%d"
 STATIC_URL = "/static/"
 STATIC_ROOT = "static"
 
+LOGIN_URL = "/sign-in"
+
 if os.getenv("GAE_ENV", "").startswith("standard"):
     MAINTENANCE_MODE = False
