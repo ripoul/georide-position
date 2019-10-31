@@ -251,3 +251,11 @@ def revokeToken(request):
     profile = Profile.objects.get(user=user)
     token = profile.token
     return HttpResponse(status=geo.revokeToken(token))
+
+
+@login_required
+@require_http_methods(["POST"])
+def deleteUser(request):
+    user = request.user
+    user.delete()
+    return redirect(reverse(index))

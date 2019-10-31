@@ -71,7 +71,14 @@
                 <form id="form_revoke_token" method="POST" action="/revoke-token">
                     {% csrf_token %}
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary btn-block"> Revoke Token </button>
+                        <button type="submit" class="btn btn-warning btn-block"> Revoke Token </button>
+                    </div> <!-- form-group// -->
+                </form>
+                <h4 class="card-title mt-3 text-center">Delete your road trip</h4>
+                <form id="delete-user" method="POST" action="/deleteUser">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <button id="delete-user-btn" type="button" class="btn btn-danger btn-block"> Delete road trip </button>
                     </div> <!-- form-group// -->
                 </form>
             </article>
@@ -90,7 +97,7 @@
                 </div>
             </div>
             <!-- Modal -->
-            <div id="modal-revoke-token-ok" class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+            <div id="modal-revoke-token-ok" class="modal fade" tabindex="-1" role="dialog"
             aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -104,7 +111,7 @@
                 </div>
             </div>
             <!-- Modal -->
-            <div id="modal-revoke-token-ko" class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+            <div id="modal-revoke-token-ko" class="modal fade" tabindex="-1" role="dialog"
             aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -117,7 +124,21 @@
                     </div>
                 </div>
             </div>
-
+            <!-- Modal -->
+            <div id="confirm-delete" class="modal fade" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            Are you sure ?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                            <button id="valid-delete-user" class="btn btn-danger btn-danger">Delete</button>  
+                        </div>
+                    </div>
+                </div>
+            </div>
         </main>
         {% include "map/footer.html" %}
     </div>

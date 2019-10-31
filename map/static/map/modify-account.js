@@ -4,7 +4,7 @@ $('#form').submit(function () {
         type: 'POST',
         data: $('#form').serialize(),
         success: function (data) {
-            window.location.href = "/trip/"+$('#id').val();
+            window.location.href = "/trip/" + $('#id').val();
             return;
         },
         error: function (e) {
@@ -17,13 +17,25 @@ $('#form').submit(function () {
 
 //
 
+
+$('#delete-user-btn').on("click", e => {
+    e.preventDefault();
+    $('#confirm-delete').modal();
+});
+
+$('#valid-delete-user').on("click", e => {
+    $('#delete-user').submit();
+});
+
+
+
 function onInput() {
     startDate = document.querySelector("#startDate");
     endDate = document.querySelector("#endDate");
 
     endDate.setCustomValidity(new Date(startDate.value) > new Date(endDate.value) ? "EndDate has to be after startDate." : "")
 }
-    
+
 $('#form_revoke_token').submit(function () {
     $.ajax({
         url: $('#form_revoke_token').attr('action'),
