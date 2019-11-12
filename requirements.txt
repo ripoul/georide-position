@@ -35,4 +35,4 @@ rsa==4.0
 six==1.13.0
 sqlparse==0.3.0
 toml==0.10.0
-urllib3==1.25.6
+urllib3==1.25.7
