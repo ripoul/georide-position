@@ -34,6 +34,10 @@ function generateRoute(url) {
     }).then(positions => {
         listPoints = []
         positions = JSON.parse(positions)
+        if(positions.length<1){
+            //pas de position pour la date donnée
+            return;
+        }
         positions.forEach(element => {
             listPoints.push(new L.LatLng(element.latitude, element.longitude));
         });
