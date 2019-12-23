@@ -8,7 +8,7 @@ cffi==1.13.2
 chardet==3.0.4
 Click==7.0
 codecov==2.0.15
-coverage==5.0
+coverage==5.0.1
 cryptography==2.8
 Django==3.0.1
 django-fernet-fields==0.6
