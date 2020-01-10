@@ -1,40 +1,33 @@
+{% extends "map/base/base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
+{% block title %} <title>Road-Trip</title> {% endblock %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'map/road-trip.css' %}">
+{% endblock %}
+{% block content %}
 
-<head>
-    <title>Road-Trip</title>
-    {% include "map/all-import.html" %}
-    <link rel="stylesheet" type="text/css" href="{% static 'map/road-trip.css' %}">
-</head>
-
-<body>
-    {% include "map/nav-bar.html" %}
-    <div class="container-fluid">
-        <div class="alert alert-danger alert-dismissible fade collapse" role="alert">
-            <strong>Token error !</strong> The token the user used to create this road-trip must be expired or incorect.
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="row">
-            <div class="col-md-3" id="rangepickercontainer">
-                <input type="text" id="rangepicker" class="form-control">
-            </div>
-            <div class="col-md-9">
-                <div id="lastDate" class="text-right"></div>
-                <div id="mapid"></div>
-            </div>
-
-        </div>
+<div class="container-fluid">
+    <div class="alert alert-danger alert-dismissible fade collapse" role="alert">
+        <strong>Token error !</strong> The token the user used to create this road-trip must be expired or incorect.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
     </div>
-    {% include "map/footer.html" %}
-    <script>
-        startDate = "{{ startDate }}";
-        endDate = "{{ endDate }}";
-        username = "{{ username }}";
-    </script>
-    <script type="text/javascript" src="{% static 'map/road-trip.js' %}"></script>
-</body>
+    <div class="row">
+        <div class="col-md-3" id="rangepickercontainer">
+            <input type="text" id="rangepicker" class="form-control">
+        </div>
+        <div class="col-md-9">
+            <div id="lastDate" class="text-right"></div>
+            <div id="mapid"></div>
+        </div>
 
-</html>
+    </div>
+</div>
+<script>
+    startDate = "{{ startDate }}";
+    endDate = "{{ endDate }}";
+    username = "{{ username }}";
+</script>
+<script type="text/javascript" src="{% static 'map/road-trip.js' %}"></script>
+{% endblock %}

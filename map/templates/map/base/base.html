@@ -1,0 +1,97 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="{% static 'map/img/logo_32x32.png' %}" />
+    {% block title %}{% endblock %}
+    <!--##### FONT AWESOME #####-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"
+        crossorigin="anonymous">
+
+    <!--##### BOOTSTRAP #####-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://getbootstrap.com/docs/4.1/assets/js/vendor/popper.min.js" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+    <!--##### Date range picker #####-->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"
+        crossorigin="anonymous" />
+
+    <!--##### LEAFLET #####-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+        integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+        crossorigin="anonymous" />
+    <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+        integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+        crossorigin="anonymous"></script>
+
+    <!--##### Datatable #####-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css"
+        crossorigin="anonymous">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"
+        crossorigin="anonymous"></script>
+
+    <style>
+        body,
+        .sticky-footer-wrapper {
+            min-height: 100vh;
+        }
+
+        .flex-fill {
+            flex: 1 1 auto;
+        }
+
+        footer {
+            margin-top: 15px;
+            background-color: #f5f5f5;
+            padding: 10px;
+        }
+    </style>
+    {% block css %}{% endblock %}
+</head>
+
+<body>
+    <div class="d-flex flex-column sticky-footer-wrapper">
+        <nav class="navbar navbar-light bg-light" style="margin-bottom: 5px;">
+            <a class="navbar-brand" href="/" style="align-items: center; display: flex;">
+                <img src="/static/map/img/logo_full.svg" width="60" height="60" class="d-inline-block align-top" alt="">
+                Georide Road Trip
+            </a>
+            <span>
+                {% if connected %}
+                <a class="btn btn-outline-success my-2 my-sm-0" href="/modify" role="button">Modify Account</a>
+                <a class="btn btn-outline-danger my-2 my-sm-0" href="/disconect" role="button">Sign Out</a>
+                {% else %}
+                <a class="btn btn-outline-success my-2 my-sm-0" href="/sign-in" role="button">Sign In</a>
+                <a class="btn btn-outline-success my-2 my-sm-0" href="/sign-up" role="button">Sign Up</a>
+                {% endif %}
+            </span>
+        </nav>
+
+        {% block content %}{% endblock %}
+
+        <footer class="footer">
+            <div class="container text-center">
+                <a style="color: black;" href="https://github.com/ripoul">Author : <i class="fab fa-github"></i>
+                    @ripoul</a><br>
+                <a style="color: black;" href="https://github.com/ripoul/georide-position">Contribute : <i
+                        class="fab fa-github"></i> georide-position</a>
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>

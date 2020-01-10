@@ -1,59 +1,47 @@
+{% extends "map/base/base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    {% include "map/all-import.html" %}
-    <title>Sign In</title>
-</head>
-
-<body>
-    <div class="d-flex flex-column sticky-footer-wrapper">
-        {% include "map/nav-bar.html" %}
-        <main class="flex-fill">
-            <div class="container">
-                <article class="card-body mx-auto" style="max-width: 400px;">
-                    <h4 class="card-title mt-3 text-center">Connect to your account</h4>
-                    <form id="form" method="POST" action="/connectAccount">
-                        {% csrf_token %}
-                        <div class="form-group input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"> <i class="fa fa-user"></i> </span>
-                            </div>
-                            <input id="id" name="id" class="form-control" placeholder="Road trip name" type="text" required>
-                        </div> <!-- form-group// -->
-                        <div class="form-group input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
-                            </div>
-                            <input id="password" name="password" class="form-control" placeholder="Password"
-                                type="password" required>
-                        </div> <!-- form-group// -->
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary btn-block"> Sign In </button>
-                        </div> <!-- form-group// -->
-                        <p class="text-center">You don't have a account ? <a href="/sign-up">Create one !</a> </p>
-                    </form>
-                </article>
-                <!-- Modal -->
-                <div id="modal" class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                    aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-body">
-                                Wrong credentials !
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
+{% block title %} <title>Sign In</title> {% endblock %}
+{% block content %} 
+<main class="flex-fill">
+    <div class="container">
+        <article class="card-body mx-auto" style="max-width: 400px;">
+            <h4 class="card-title mt-3 text-center">Connect to your account</h4>
+            <form id="form" method="POST" action="/connectAccount">
+                {% csrf_token %}
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                    </div>
+                    <input id="id" name="id" class="form-control" placeholder="Road trip name" type="text" required>
+                </div> <!-- form-group// -->
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                    </div>
+                    <input id="password" name="password" class="form-control" placeholder="Password"
+                        type="password" required>
+                </div> <!-- form-group// -->
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block"> Sign In </button>
+                </div> <!-- form-group// -->
+                <p class="text-center">You don't have a account ? <a href="/sign-up">Create one !</a> </p>
+            </form>
+        </article>
+        <!-- Modal -->
+        <div id="modal" class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        Wrong credentials !
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
-        </main>
-        {% include "map/footer.html" %}
+        </div>
     </div>
-    <script type="text/javascript" src="{% static 'map/connect-account.js' %}"></script>
-</body>
-
-</html>
+</main>
+<script type="text/javascript" src="{% static 'map/connect-account.js' %}"></script>
+{% endblock %}

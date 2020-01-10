@@ -1,150 +1,136 @@
+{% extends "map/base/base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
+{% block title %} <title>Modify Account</title> {% endblock %}
+{% block content %}
+<main class="flex-fill">
+    <article class="card-body mx-auto" style="max-width: 400px;">
+        <h4 class="card-title mt-3 text-center">Modify your Account</h4>
+        <p class="text-center">If you need help to get your georide token or the ID of your tracker, go to <a
+                href="/getInfo" target="_blank">the help page.</a></p>
+        <form id="form" method="POST" action="/modifyAccount" oninput="onInput();">
+            {% csrf_token %}
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                </div>
+                <input value="{{ id }}" id="id" name="id" class="form-control" placeholder="Road trip name" type="text"
+                    required>
+            </div> <!-- form-group// -->
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                </div>
+                <input value="{{ email }}" name="email" class="form-control" placeholder="Email address" type="email"
+                    required>
+            </div> <!-- form-group// -->
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fas fa-key"></i> </span>
+                </div>
+                <input value="{{ token }}" name="token" class="form-control" placeholder="Your georide token"
+                    type="password" required>
+            </div> <!-- form-group// -->
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fas fa-thumbtack"></i> </span>
+                </div>
+                <input value="{{ trackerID }}" name="trackerID" class="form-control" placeholder="Georide tracker ID"
+                    type="number" required>
+            </div> <!-- form-group// -->
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fas fa-calendar-day"></i> </span>
+                </div>
+                <input value="{{ startDate }}" id="startDate" name="startDate" class="form-control"
+                    placeholder="The first day of your road trip" type="date" required>
+            </div> <!-- form-group// -->
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fas fa-calendar-day"></i> </span>
+                </div>
+                <input value="{{ endDate }}" id="endDate" name="endDate" class="form-control"
+                    placeholder="The last day of your road trip" type="date" required>
+            </div> <!-- form-group// -->
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-block"> Update Account </button>
+            </div> <!-- form-group// -->
+        </form>
+        <div class="dropdown-divider"></div>
 
-<head>
-    {% include "map/all-import.html" %}
-    <title>Modify Account</title>
-</head>
+        <h4 class="card-title mt-3 text-center">Revoke a token</h4>
+        <form id="form_revoke_token" method="POST" action="/revoke-token">
+            {% csrf_token %}
+            <div class="form-group">
+                <button type="submit" class="btn btn-warning btn-block"> Revoke Token </button>
+            </div> <!-- form-group// -->
+        </form>
+        <div class="dropdown-divider"></div>
 
-
-
-<body>
-    <div class="d-flex flex-column sticky-footer-wrapper">
-        {% include "map/nav-bar.html" %}
-        <main class="flex-fill">
-            <article class="card-body mx-auto" style="max-width: 400px;">
-                <h4 class="card-title mt-3 text-center">Modify your Account</h4>
-                <p class="text-center">If you need help to get your georide token or the ID of your tracker, go to <a
-                        href="/getInfo" target="_blank">the help page.</a></p>
-                <form id="form" method="POST" action="/modifyAccount" oninput="onInput();">
-                    {% csrf_token %}
-                    <div class="form-group input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"> <i class="fa fa-user"></i> </span>
-                        </div>
-                        <input value="{{ id }}" id="id" name="id" class="form-control" placeholder="Road trip name" type="text"
-                            required>
-                    </div> <!-- form-group// -->
-                    <div class="form-group input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
-                        </div>
-                        <input value="{{ email }}" name="email" class="form-control" placeholder="Email address"
-                            type="email" required>
-                    </div> <!-- form-group// -->
-                    <div class="form-group input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"> <i class="fas fa-key"></i> </span>
-                        </div>
-                        <input value="{{ token }}" name="token" class="form-control" placeholder="Your georide token"
-                            type="password" required>
-                    </div> <!-- form-group// -->
-                    <div class="form-group input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"> <i class="fas fa-thumbtack"></i> </span>
-                        </div>
-                        <input value="{{ trackerID }}" name="trackerID" class="form-control"
-                            placeholder="Georide tracker ID" type="number" required>
-                    </div> <!-- form-group// -->
-                    <div class="form-group input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"> <i class="fas fa-calendar-day"></i> </span>
-                        </div>
-                        <input value="{{ startDate }}" id="startDate" name="startDate" class="form-control"
-                            placeholder="The first day of your road trip" type="date" required>
-                    </div> <!-- form-group// -->
-                    <div class="form-group input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"> <i class="fas fa-calendar-day"></i> </span>
-                        </div>
-                        <input value="{{ endDate }}" id="endDate" name="endDate" class="form-control"
-                            placeholder="The last day of your road trip" type="date" required>
-                    </div> <!-- form-group// -->
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary btn-block"> Update Account </button>
-                    </div> <!-- form-group// -->
-                </form>
-                <div class="dropdown-divider"></div>
-
-                <h4 class="card-title mt-3 text-center">Revoke a token</h4>
-                <form id="form_revoke_token" method="POST" action="/revoke-token">
-                    {% csrf_token %}
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-warning btn-block"> Revoke Token </button>
-                    </div> <!-- form-group// -->
-                </form>
-                <div class="dropdown-divider"></div>
-                
-                <h4 class="card-title mt-3 text-center">Delete your road trip</h4>
-                <form id="delete-user" method="POST" action="/deleteUser">
-                    {% csrf_token %}
-                    <div class="form-group">
-                        <button id="delete-user-btn" type="button" class="btn btn-danger btn-block"> Delete road trip </button>
-                    </div> <!-- form-group// -->
-                </form>
-            </article>
-            <!-- Modal -->
-            <div id="modal" class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-body">
-                            An error occured...
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        </div>
-                    </div>
+        <h4 class="card-title mt-3 text-center">Delete your road trip</h4>
+        <form id="delete-user" method="POST" action="/deleteUser">
+            {% csrf_token %}
+            <div class="form-group">
+                <button id="delete-user-btn" type="button" class="btn btn-danger btn-block"> Delete road trip </button>
+            </div> <!-- form-group// -->
+        </form>
+    </article>
+    <!-- Modal -->
+    <div id="modal" class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    An error occured...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
             </div>
-            <!-- Modal -->
-            <div id="modal-revoke-token-ok" class="modal fade" tabindex="-1" role="dialog"
-            aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-body">
-                            Token revoked !
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Modal -->
-            <div id="modal-revoke-token-ko" class="modal fade" tabindex="-1" role="dialog"
-            aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-body">
-                            Token not found or already revoked.
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Modal -->
-            <div id="confirm-delete" class="modal fade" tabindex="-1" role="dialog"
-            aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-body">
-                            Are you sure ?
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                            <button id="valid-delete-user" class="btn btn-danger btn-danger">Delete</button>  
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </main>
-        {% include "map/footer.html" %}
+        </div>
     </div>
-    <script type="text/javascript" src="{% static 'map/modify-account.js' %}"></script>
-</body>
-
-</html>
+    <!-- Modal -->
+    <div id="modal-revoke-token-ok" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    Token revoked !
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div id="modal-revoke-token-ko" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    Token not found or already revoked.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div id="confirm-delete" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    Are you sure ?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button id="valid-delete-user" class="btn btn-danger btn-danger">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<script type="text/javascript" src="{% static 'map/modify-account.js' %}"></script>
+{% endblock %}
