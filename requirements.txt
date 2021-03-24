@@ -31,7 +31,7 @@ pycparser==2.19
 python-dotenv==0.10.5
 pytz==2019.3
 requests==2.23.0
-rsa==4.0
+rsa==4.1
 six==1.14.0
 sqlparse==0.3.0
 toml==0.10.0
